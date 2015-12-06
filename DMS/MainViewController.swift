@@ -27,7 +27,7 @@ class MainViewController: UIViewController,UIActionSheetDelegate {
         if(NSUserDefaults.standardUserDefaults().objectForKey(Common.UserLanguage)!.integerValue == Language.Arabic.rawValue){
             
             
-            let homeBarBtnItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: UIBarButtonItemStyle.Plain, target: self, action: "menuTapped")
+            let  homeBarBtnItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: UIBarButtonItemStyle.Plain, target: self, action: "menuTapped")
             
 //            let button:UIButton  = UIButton(frame: CGRectMake(0, 0, 30, 30))
 //            button.addTarget(self, action: "menuTapped", forControlEvents: UIControlEvents.TouchUpInside)
