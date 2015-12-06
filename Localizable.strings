@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  VMS
+
+  Created by Mohamed Fadl on 12/4/15.
+  Copyright © 2015 Compulink. All rights reserved.
+*/
+
+"my_profile"="ملفي الشخصي";
+"request"="طلب تعريف";
+"self_vacation"="الخدمة الذاتية للأجازات";
+"medic_req"="طلب إحالة كشف طبي";
+"delegate_req"="طلب الإنتداب";
+"logout"="خروج";
+"login_user_empty"="من فضلك ادخل اسم المستخدم";
+"login_pass_empty"="من فضلك ادخل كلمة المرور";
+"login_invalid"="اسم المستخدم أو كلمة المرور غير صحيحة";
+
+"open_notifications"="التبليغات المفتوحة";
+"closed_notifications"="التبليغات المغلقة";
+"cancelled_notifications"="التبليغات الملغاة";
+"all_notifications"="كل التبليغات";
+"top_menu_title"="قائمة الطلبات";
+"cancel_dialog" = "إلغاء";

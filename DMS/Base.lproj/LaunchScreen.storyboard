@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="نظام إدارة الأجازات" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zp4-Mp-iev">
+                                <rect key="frame" x="60" y="308" width="200" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="J3J-kc-9BX"/>
+                                    <constraint firstAttribute="height" constant="28" id="jqo-4w-0rm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.1019607843" green="0.2666666667" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X65-n3-tRX">
+                                <rect key="frame" x="96" y="427" width="129" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="HSB-ma-R2X"/>
+                                    <constraint firstAttribute="height" constant="21" id="KUl-et-2Vh"/>
+                                    <constraint firstAttribute="width" constant="129" id="Kp4-OI-loi"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="hJi-9B-zyU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="u8p-OL-W7I"/>
+                                    <constraint firstAttribute="width" constant="51" id="vqp-SV-3qS"/>
+                                </constraints>
+                                <string key="text">Namaa World ©
+COPYRIGHT SIGN
+Unicode: U+00A9, UTF-8: C2 A9</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.1019607843" green="0.2666666667" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="KUl-et-2Vh"/>
+                                        <exclude reference="hJi-9B-zyU"/>
+                                        <exclude reference="u8p-OL-W7I"/>
+                                        <exclude reference="vqp-SV-3qS"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="hDA-Qu-nuC">
+                                <rect key="frame" x="100" y="180" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="4g2-sv-5Td"/>
+                                    <constraint firstAttribute="height" constant="120" id="Ohv-JS-zoh"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hDA-Qu-nuC" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="67" id="2Ih-AJ-EMG"/>
+                            <constraint firstItem="X65-n3-tRX" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" constant="0.5" id="F52-X1-q9M"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="X65-n3-tRX" secondAttribute="bottom" constant="32" id="T19-g7-oxk"/>
+                            <constraint firstItem="hDA-Qu-nuC" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Vm5-Sm-3Cf"/>
+                            <constraint firstItem="zp4-Mp-iev" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ZJc-Az-2vM"/>
+                            <constraint firstItem="zp4-Mp-iev" firstAttribute="top" secondItem="hDA-Qu-nuC" secondAttribute="bottom" constant="8" id="bWl-Eu-gbu"/>
+                            <constraint firstItem="hDA-Qu-nuC" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="rlZ-4v-1my"/>
+                            <constraint firstItem="X65-n3-tRX" firstAttribute="top" secondItem="zp4-Mp-iev" secondAttribute="bottom" constant="222" id="xdF-7h-xUA"/>
+                            <constraint firstItem="hDA-Qu-nuC" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="284" id="zSb-rl-my4"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2Ih-AJ-EMG"/>
+                                <exclude reference="zSb-rl-my4"/>
+                                <exclude reference="xdF-7h-xUA"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchLogo" width="600" height="600"/>
+    </resources>
+</document>
