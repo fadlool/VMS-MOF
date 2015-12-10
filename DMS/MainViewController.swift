@@ -156,12 +156,14 @@ extension MainViewController: SidePanelViewControllerDelegate {
         }
         else if(sideMenuItem.order ==  Common.MenuIdentityReqOrder){
             print("The letter A")
-        }else if sideMenuItem.order == Common.MenuLogoutOrder{
             
+        }else if sideMenuItem.order == Common.MenuLogoutOrder{
             self.dismissViewControllerAnimated(true, completion: nil)
+            
+        }else if sideMenuItem.order == Common.MenuSelfVacationOrder{
+            self.performSegueWithIdentifier("showSelfVacation", sender: self)
+            
         }
-       
-        
         
         delegate?.collapseSidePanels?()
     }

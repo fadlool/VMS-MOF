@@ -78,10 +78,19 @@ class NotificationsViewController: UITableViewController {
         self.mwTopRefreshControl?.endRefreshing()
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
-    }
     
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+         return 10
+    }
+//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 10
+//    }
+//    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        
+//        let v:UIView = UIView()
+//        v.backgroundColor = UIColor(red: 0.91, green: 0.89, blue: 0.78, alpha: 1.0)
+//        return v;
+//    }
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
             let v:UIView = UIView()

@@ -96,26 +96,26 @@ class NotificationDetailsViewController:UITableViewController {
         self.workGroupLabel.text = loginInfo.VORGNAME
     }
     
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 50
-//    }
-//    
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//        let label:UILabel  = UILabel()
-//        label.backgroundColor=UIColor.clearColor()
-//        label.textAlignment=NSTextAlignment.Right
-//        label.textColor=UIColor.grayColor()
-//        
-//        
-//        if(section == 0){
-//            label.text = "emp_details".localized
-//        
-//        }else if(section == 1){
-//            label.text = "vacation_details".localized
-//        
-//        }
-//        return label
-//        
-//    }
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label:UILabel  = UILabel()
+        label.backgroundColor=UIColor.clearColor()
+        label.textAlignment=NSTextAlignment.Right
+        label.textColor=UIColor.grayColor()
+        
+        
+        if(section == 0){
+            label.text = "emp_details".localized
+        
+        }else if(section == 1){
+            label.text = "vacation_details".localized
+        
+        }
+        return label
+        
+    }
 }
