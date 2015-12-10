@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		126E9A041C15E86300293B77 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E9A031C15E86300293B77 /* UserInfo.m */; };
+		126E9A081C15E87000293B77 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E9A061C15E87000293B77 /* SessionManager.m */; };
+		126E9A0C1C15F1B900293B77 /* LoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E9A0B1C15F1B900293B77 /* LoginInfo.m */; };
+		127BCB661C1616B700D63B29 /* UserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127BCB651C1616B700D63B29 /* UserNotification.swift */; };
+		127BCB681C161BE200D63B29 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127BCB671C161BE200D63B29 /* NotificationCell.swift */; };
+		127BCB6A1C161CB100D63B29 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127BCB691C161CB100D63B29 /* NotificationsViewController.swift */; };
 		127C79961C11DF7A00757D12 /* CustomAlertInputDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 127C79951C11DF7A00757D12 /* CustomAlertInputDelegate.m */; };
 		127C79981C11DF9200757D12 /* CustomAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 127C79971C11DF9200757D12 /* CustomAlertViewDelegate.m */; };
 		127C799B1C11E75E00757D12 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 127C799A1C11E75E00757D12 /* Localizable.strings */; };
@@ -31,6 +37,7 @@
 		127C79D91C12269400757D12 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 127C79D01C12269400757D12 /* AFURLSessionManager.m */; };
 		127C79DB1C1226BB00757D12 /* Logger in Resources */ = {isa = PBXBuildFile; fileRef = 127C79DA1C1226BB00757D12 /* Logger */; };
 		127C79DD1C1226C400757D12 /* UIKit+AFNetworking in Resources */ = {isa = PBXBuildFile; fileRef = 127C79DC1C1226C400757D12 /* UIKit+AFNetworking */; };
+		129833331C18A32D0069A3F5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */; };
 		12B743E21C0EDAEE0059FD8E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B743E11C0EDAEE0059FD8E /* UIKit.framework */; };
 		12B743E41C0EE6EE0059FD8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B743E31C0EE6EE0059FD8E /* Constants.swift */; };
 		12B82C401C0DC14400300F3E /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B82C3F1C0DC14400300F3E /* SidePanelViewController.swift */; };
@@ -70,8 +77,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		126E9A011C15E86300293B77 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
+		126E9A021C15E86300293B77 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		126E9A031C15E86300293B77 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		126E9A061C15E87000293B77 /* SessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionManager.m; sourceTree = "<group>"; };
+		126E9A0B1C15F1B900293B77 /* LoginInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginInfo.m; sourceTree = "<group>"; };
+		126E9A0D1C15F1C700293B77 /* LoginInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginInfo.h; sourceTree = "<group>"; };
 		127242371C06FF6F006C4484 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		127242391C06FF70006C4484 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		127BCB651C1616B700D63B29 /* UserNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotification.swift; sourceTree = "<group>"; };
+		127BCB671C161BE200D63B29 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		127BCB691C161CB100D63B29 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		127C79941C11DF6000757D12 /* CustomAlertInputDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomAlertInputDelegate.h; sourceTree = "<group>"; };
 		127C79951C11DF7A00757D12 /* CustomAlertInputDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertInputDelegate.m; sourceTree = "<group>"; };
 		127C79971C11DF9200757D12 /* CustomAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertViewDelegate.m; sourceTree = "<group>"; };
@@ -114,6 +130,7 @@
 		127C79D01C12269400757D12 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		127C79DA1C1226BB00757D12 /* Logger */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Logger; path = AFNetworking/Logger; sourceTree = "<group>"; };
 		127C79DC1C1226C400757D12 /* UIKit+AFNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "UIKit+AFNetworking"; path = "AFNetworking/UIKit+AFNetworking"; sourceTree = "<group>"; };
+		129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 		12B743E11C0EDAEE0059FD8E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		12B743E31C0EE6EE0059FD8E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12B82C3F1C0DC14400300F3E /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -239,7 +256,13 @@
 		12B82C411C0DC2A400300F3E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				126E9A021C15E86300293B77 /* UserInfo.h */,
+				126E9A031C15E86300293B77 /* UserInfo.m */,
 				12B82C421C0DC2D600300F3E /* SideMenuItem.swift */,
+				126E9A0B1C15F1B900293B77 /* LoginInfo.m */,
+				126E9A0D1C15F1C700293B77 /* LoginInfo.h */,
+				127BCB651C1616B700D63B29 /* UserNotification.swift */,
+				127BCB671C161BE200D63B29 /* NotificationCell.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -247,6 +270,8 @@
 		12B82C4A1C0DE85400300F3E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				126E9A011C15E86300293B77 /* SessionManager.h */,
+				126E9A061C15E87000293B77 /* SessionManager.m */,
 				12B82C4C1C0DE88D00300F3E /* Helper.m */,
 				12B82C4E1C0DE89E00300F3E /* Helper.h */,
 				12B82C551C0DE9E200300F3E /* Common.swift */,
@@ -342,6 +367,8 @@
 				12B82C441C0DCEC100300F3E /* MainViewController.swift */,
 				12B82C461C0DD80300300F3E /* ContainerViewController.swift */,
 				127C799C1C1206A500757D12 /* ProfileViewController.swift */,
+				127BCB691C161CB100D63B29 /* NotificationsViewController.swift */,
+				129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -491,12 +518,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				126E9A0C1C15F1B900293B77 /* LoginInfo.m in Sources */,
+				127BCB681C161BE200D63B29 /* NotificationCell.swift in Sources */,
 				12E276691C05B6D700DA23E9 /* LoginViewController.swift in Sources */,
 				12E2766F1C05B6D700DA23E9 /* VMS.xcdatamodeld in Sources */,
+				126E9A081C15E87000293B77 /* SessionManager.m in Sources */,
 				12B82C471C0DD80300300F3E /* ContainerViewController.swift in Sources */,
 				12B82C561C0DE9E200300F3E /* Common.swift in Sources */,
 				127C79D61C12269400757D12 /* AFURLConnectionOperation.m in Sources */,
 				127C79D51C12269400757D12 /* AFSecurityPolicy.m in Sources */,
+				127BCB6A1C161CB100D63B29 /* NotificationsViewController.swift in Sources */,
+				126E9A041C15E86300293B77 /* UserInfo.m in Sources */,
 				12B82C4D1C0DE88D00300F3E /* Helper.m in Sources */,
 				127C79D31C12269400757D12 /* AFHTTPSessionManager.m in Sources */,
 				127C79BF1C121BC800757D12 /* SWActionSheet.m in Sources */,
@@ -507,10 +539,12 @@
 				127C79961C11DF7A00757D12 /* CustomAlertInputDelegate.m in Sources */,
 				127C79D21C12269400757D12 /* AFHTTPRequestOperationManager.m in Sources */,
 				12B82C431C0DC2D600300F3E /* SideMenuItem.swift in Sources */,
+				129833331C18A32D0069A3F5 /* NotificationDetailsViewController.swift in Sources */,
 				127C79D11C12269400757D12 /* AFHTTPRequestOperation.m in Sources */,
 				127C79D91C12269400757D12 /* AFURLSessionManager.m in Sources */,
 				12B82C451C0DCEC100300F3E /* MainViewController.swift in Sources */,
 				127C79D41C12269400757D12 /* AFNetworkReachabilityManager.m in Sources */,
+				127BCB661C1616B700D63B29 /* UserNotification.swift in Sources */,
 				127C79D81C12269400757D12 /* AFURLResponseSerialization.m in Sources */,
 				127C79D71C12269400757D12 /* AFURLRequestSerialization.m in Sources */,
 				127C79C11C121C3B00757D12 /* Services.swift in Sources */,
