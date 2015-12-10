@@ -24,6 +24,16 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let orientation:UIDeviceOrientation = UIDevice.currentDevice().orientation
+        if(orientation == UIDeviceOrientation.Portrait || orientation == UIDeviceOrientation.Unknown){
+            self.logoImgView.hidden = false
+            self.logoLabel.hidden = false
+            //            if(self.kbShown)
+            
+        }else{
+            self.logoImgView.hidden = true
+            self.logoLabel.hidden = true
+        }
         
         if(NSUserDefaults.standardUserDefaults().objectForKey(Common.UserLanguage)!.integerValue == Language.English.rawValue){
             self.usernameTxtField.leftViewMode = UITextFieldViewMode.Always;
@@ -55,7 +65,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        if(toInterfaceOrientation == UIInterfaceOrientation.Portrait){
+        if(toInterfaceOrientation == UIInterfaceOrientation.Portrait ){
             self.logoImgView.hidden = false
             self.logoLabel.hidden = false
             
@@ -87,15 +97,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        if(UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait){
-            self.logoImgView.hidden = true
-            self.logoLabel.hidden = true
-            
-        }else{
-            self.logoImgView.hidden = false
-            self.logoLabel.hidden = false
-        }
-        
+       
         self.observeKeyboard()
     }
     
@@ -113,7 +115,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
 
     func keyboardWillShow(notification:NSNotification){
-        
+        self.kbShown = true
         UIView.beginAnimations(nil, context:nil)
         UIView.setAnimationDuration(0.3)
         UIView.commitAnimations()
@@ -133,7 +135,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     func keyboardWillHide(notification:NSNotification){
-       
+        
+        self.kbShown = false
         UIView.beginAnimations(nil, context:nil)
         UIView.setAnimationDuration(0.3)
         UIView.commitAnimations()
@@ -167,6 +170,21 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     func login(){
         let services:Services = Services(viewController: self)
+        
+        if(self.usernameTxtField.text! == ""){
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "login_user_empty".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
+            return
+        }
+        
+        if(self.usernameTxtField.text! == ""){
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "login_pass_empty".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
+            return
+        }
+        
         services.login(self.usernameTxtField.text!,password:self.passwordTxtField.text!)
         
     }

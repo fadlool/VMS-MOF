@@ -50,6 +50,23 @@ class ContainerViewController: UIViewController {
         centerNavigationController.view.addGestureRecognizer(panGestureRecognizer)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        else if(segue.identifier == "showDetails"){
+//            
+//            let detailsViewController:NotificationDetailsViewController = segue.destinationViewController as! NotificationDetailsViewController
+//            
+//            if(self.notifisViewControllerDelegate?.selectedNotificaion?.MESSAGETYPE == "FYI"){
+//                detailsViewController.navigationItem.title = "info_purpose".localized
+//            }
+//            else if(self.notifisViewControllerDelegate?.selectedNotificaion?.MESSAGETYPE == "FYA"){
+//                detailsViewController.navigationItem.title = "approve_purpose".localized
+//                
+//            }
+//            detailsViewController.notificationsViewController = self.notifisViewControllerDelegate
+//            
+//        }
+    }
+    
 }
 
 // MARK: CenterViewController delegate
