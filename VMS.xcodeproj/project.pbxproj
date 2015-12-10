@@ -38,6 +38,16 @@
 		127C79DB1C1226BB00757D12 /* Logger in Resources */ = {isa = PBXBuildFile; fileRef = 127C79DA1C1226BB00757D12 /* Logger */; };
 		127C79DD1C1226C400757D12 /* UIKit+AFNetworking in Resources */ = {isa = PBXBuildFile; fileRef = 127C79DC1C1226C400757D12 /* UIKit+AFNetworking */; };
 		129833331C18A32D0069A3F5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */; };
+		129833351C1949CA0069A3F5 /* SelfVacationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833341C1949CA0069A3F5 /* SelfVacationVC.swift */; };
+		129833371C194D050069A3F5 /* VacationReqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833361C194D050069A3F5 /* VacationReqVC.swift */; };
+		129833391C1951690069A3F5 /* CurvedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833381C1951690069A3F5 /* CurvedLabel.swift */; };
+		129833481C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 129833431C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.m */; };
+		129833491C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 129833441C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.m */; };
+		1298334A1C19519B0069A3F5 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 129833451C19519B0069A3F5 /* MLPAutoCompleteTextField.m */; };
+		1298334B1C19519B0069A3F5 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 129833461C19519B0069A3F5 /* NSString+Levenshtein.m */; };
+		1298334C1C19519B0069A3F5 /* ToCcDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 129833471C19519B0069A3F5 /* ToCcDataSource.m */; };
+		1298334E1C1953320069A3F5 /* DropDownItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298334D1C1953320069A3F5 /* DropDownItem.swift */; };
+		129833501C1956240069A3F5 /* VacType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1298334F1C1956240069A3F5 /* VacType.swift */; };
 		12B743E21C0EDAEE0059FD8E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12B743E11C0EDAEE0059FD8E /* UIKit.framework */; };
 		12B743E41C0EE6EE0059FD8E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B743E31C0EE6EE0059FD8E /* Constants.swift */; };
 		12B82C401C0DC14400300F3E /* SidePanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B82C3F1C0DC14400300F3E /* SidePanelViewController.swift */; };
@@ -131,6 +141,24 @@
 		127C79DA1C1226BB00757D12 /* Logger */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Logger; path = AFNetworking/Logger; sourceTree = "<group>"; };
 		127C79DC1C1226C400757D12 /* UIKit+AFNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "UIKit+AFNetworking"; path = "AFNetworking/UIKit+AFNetworking"; sourceTree = "<group>"; };
 		129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
+		129833341C1949CA0069A3F5 /* SelfVacationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfVacationVC.swift; sourceTree = "<group>"; };
+		129833361C194D050069A3F5 /* VacationReqVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationReqVC.swift; sourceTree = "<group>"; };
+		129833381C1951690069A3F5 /* CurvedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurvedLabel.swift; sourceTree = "<group>"; };
+		1298333B1C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DEMOCustomAutoCompleteCell.h; path = MLPAutoCompleteTextField/DEMOCustomAutoCompleteCell.h; sourceTree = "<group>"; };
+		1298333C1C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DEMOCustomAutoCompleteObject.h; path = MLPAutoCompleteTextField/DEMOCustomAutoCompleteObject.h; sourceTree = "<group>"; };
+		1298333D1C19519B0069A3F5 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompleteTextField.h; path = MLPAutoCompleteTextField/MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
+		1298333E1C19519B0069A3F5 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompleteTextFieldDataSource.h; path = MLPAutoCompleteTextField/MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
+		1298333F1C19519B0069A3F5 /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompleteTextFieldDelegate.h; path = MLPAutoCompleteTextField/MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
+		129833401C19519B0069A3F5 /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MLPAutoCompletionObject.h; path = MLPAutoCompleteTextField/MLPAutoCompletionObject.h; sourceTree = "<group>"; };
+		129833411C19519B0069A3F5 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Levenshtein.h"; path = "MLPAutoCompleteTextField/NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		129833421C19519B0069A3F5 /* ToCcDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToCcDataSource.h; path = MLPAutoCompleteTextField/ToCcDataSource.h; sourceTree = "<group>"; };
+		129833431C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DEMOCustomAutoCompleteCell.m; path = MLPAutoCompleteTextField/DEMOCustomAutoCompleteCell.m; sourceTree = "<group>"; };
+		129833441C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DEMOCustomAutoCompleteObject.m; path = MLPAutoCompleteTextField/DEMOCustomAutoCompleteObject.m; sourceTree = "<group>"; };
+		129833451C19519B0069A3F5 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MLPAutoCompleteTextField.m; path = MLPAutoCompleteTextField/MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
+		129833461C19519B0069A3F5 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Levenshtein.m"; path = "MLPAutoCompleteTextField/NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		129833471C19519B0069A3F5 /* ToCcDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToCcDataSource.m; path = MLPAutoCompleteTextField/ToCcDataSource.m; sourceTree = "<group>"; };
+		1298334D1C1953320069A3F5 /* DropDownItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownItem.swift; sourceTree = "<group>"; };
+		1298334F1C1956240069A3F5 /* VacType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacType.swift; sourceTree = "<group>"; };
 		12B743E11C0EDAEE0059FD8E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		12B743E31C0EE6EE0059FD8E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12B82C3F1C0DC14400300F3E /* SidePanelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidePanelViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +221,8 @@
 		127C79A01C121A8800757D12 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				1298333A1C19516D0069A3F5 /* MLPAutoCompleteTextField */,
+				129833381C1951690069A3F5 /* CurvedLabel.swift */,
 				127C79B21C121BAE00757D12 /* Pickers */,
 				127C79A71C121B5400757D12 /* AFNetworking */,
 				127C79A11C121AA700757D12 /* MBProgressHUD */,
@@ -253,9 +283,30 @@
 			name = Pickers;
 			sourceTree = "<group>";
 		};
+		1298333A1C19516D0069A3F5 /* MLPAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				1298333B1C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.h */,
+				1298333C1C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.h */,
+				1298333D1C19519B0069A3F5 /* MLPAutoCompleteTextField.h */,
+				1298333E1C19519B0069A3F5 /* MLPAutoCompleteTextFieldDataSource.h */,
+				1298333F1C19519B0069A3F5 /* MLPAutoCompleteTextFieldDelegate.h */,
+				129833401C19519B0069A3F5 /* MLPAutoCompletionObject.h */,
+				129833411C19519B0069A3F5 /* NSString+Levenshtein.h */,
+				129833421C19519B0069A3F5 /* ToCcDataSource.h */,
+				129833431C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.m */,
+				129833441C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.m */,
+				129833451C19519B0069A3F5 /* MLPAutoCompleteTextField.m */,
+				129833461C19519B0069A3F5 /* NSString+Levenshtein.m */,
+				129833471C19519B0069A3F5 /* ToCcDataSource.m */,
+			);
+			name = MLPAutoCompleteTextField;
+			sourceTree = "<group>";
+		};
 		12B82C411C0DC2A400300F3E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1298334D1C1953320069A3F5 /* DropDownItem.swift */,
 				126E9A021C15E86300293B77 /* UserInfo.h */,
 				126E9A031C15E86300293B77 /* UserInfo.m */,
 				12B82C421C0DC2D600300F3E /* SideMenuItem.swift */,
@@ -263,6 +314,7 @@
 				126E9A0D1C15F1C700293B77 /* LoginInfo.h */,
 				127BCB651C1616B700D63B29 /* UserNotification.swift */,
 				127BCB671C161BE200D63B29 /* NotificationCell.swift */,
+				1298334F1C1956240069A3F5 /* VacType.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -369,6 +421,8 @@
 				127C799C1C1206A500757D12 /* ProfileViewController.swift */,
 				127BCB691C161CB100D63B29 /* NotificationsViewController.swift */,
 				129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */,
+				129833341C1949CA0069A3F5 /* SelfVacationVC.swift */,
+				129833361C194D050069A3F5 /* VacationReqVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -520,6 +574,8 @@
 			files = (
 				126E9A0C1C15F1B900293B77 /* LoginInfo.m in Sources */,
 				127BCB681C161BE200D63B29 /* NotificationCell.swift in Sources */,
+				129833491C19519B0069A3F5 /* DEMOCustomAutoCompleteObject.m in Sources */,
+				1298334B1C19519B0069A3F5 /* NSString+Levenshtein.m in Sources */,
 				12E276691C05B6D700DA23E9 /* LoginViewController.swift in Sources */,
 				12E2766F1C05B6D700DA23E9 /* VMS.xcdatamodeld in Sources */,
 				126E9A081C15E87000293B77 /* SessionManager.m in Sources */,
@@ -529,24 +585,32 @@
 				127C79D51C12269400757D12 /* AFSecurityPolicy.m in Sources */,
 				127BCB6A1C161CB100D63B29 /* NotificationsViewController.swift in Sources */,
 				126E9A041C15E86300293B77 /* UserInfo.m in Sources */,
+				129833481C19519B0069A3F5 /* DEMOCustomAutoCompleteCell.m in Sources */,
+				129833501C1956240069A3F5 /* VacType.swift in Sources */,
+				1298334A1C19519B0069A3F5 /* MLPAutoCompleteTextField.m in Sources */,
 				12B82C4D1C0DE88D00300F3E /* Helper.m in Sources */,
 				127C79D31C12269400757D12 /* AFHTTPSessionManager.m in Sources */,
 				127C79BF1C121BC800757D12 /* SWActionSheet.m in Sources */,
 				127C79BE1C121BC800757D12 /* ActionSheetStringPicker.m in Sources */,
+				1298334C1C19519B0069A3F5 /* ToCcDataSource.m in Sources */,
+				129833351C1949CA0069A3F5 /* SelfVacationVC.swift in Sources */,
 				127C79BD1C121BC800757D12 /* ActionSheetDatePicker.m in Sources */,
 				127C79981C11DF9200757D12 /* CustomAlertViewDelegate.m in Sources */,
 				127C79BC1C121BC800757D12 /* AbstractActionSheetPicker.m in Sources */,
 				127C79961C11DF7A00757D12 /* CustomAlertInputDelegate.m in Sources */,
 				127C79D21C12269400757D12 /* AFHTTPRequestOperationManager.m in Sources */,
 				12B82C431C0DC2D600300F3E /* SideMenuItem.swift in Sources */,
+				129833371C194D050069A3F5 /* VacationReqVC.swift in Sources */,
 				129833331C18A32D0069A3F5 /* NotificationDetailsViewController.swift in Sources */,
 				127C79D11C12269400757D12 /* AFHTTPRequestOperation.m in Sources */,
+				129833391C1951690069A3F5 /* CurvedLabel.swift in Sources */,
 				127C79D91C12269400757D12 /* AFURLSessionManager.m in Sources */,
 				12B82C451C0DCEC100300F3E /* MainViewController.swift in Sources */,
 				127C79D41C12269400757D12 /* AFNetworkReachabilityManager.m in Sources */,
 				127BCB661C1616B700D63B29 /* UserNotification.swift in Sources */,
 				127C79D81C12269400757D12 /* AFURLResponseSerialization.m in Sources */,
 				127C79D71C12269400757D12 /* AFURLRequestSerialization.m in Sources */,
+				1298334E1C1953320069A3F5 /* DropDownItem.swift in Sources */,
 				127C79C11C121C3B00757D12 /* Services.swift in Sources */,
 				12B82C401C0DC14400300F3E /* SidePanelViewController.swift in Sources */,
 				127C799D1C1206A500757D12 /* ProfileViewController.swift in Sources */,
