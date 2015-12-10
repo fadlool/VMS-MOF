@@ -16,6 +16,13 @@ extension String {
 
 public class Common: NSObject {
     
+    public static let LOGIN_SERVICE = "XXX_LOGIN";
+    public static let GET_USER_INFO_SERVICE = "GET_USER_INFO";
+    public static let GET_USER_NOTIFS_SERVICE = "XXX_GET_USER_NOTIFICATIONS";
+    public static let APPROVE_REQ_SERVICE = "XXX_APPROVE_REQUEST"
+    public static let CLOSE_REQ_SERVICE = "XXX_CLOSE_FYI_NOTIFICATION"
+    public static let REJECT_REQ_SERVICE = "XXX_REJECT_REQUEST"
+    
     public static let MenuProfileOrder: Int = 0
     public static let MenuIdentityReqOrder: Int = 1
     public static let MenuSelfVacationOrder: Int = 2
@@ -23,7 +30,6 @@ public class Common: NSObject {
     public static let MenuDelegateOrder: Int = 4
     public static let MenuLogoutOrder: Int = 5
     
-    public static let LoginResult = "XXX_LOGINResult"
     public static let UserLanguage: String = "preference_language"
     public static let DateIsHijri: String = "preference_is_hijri"
     public static let DateFormat: String = "preference_date_format"

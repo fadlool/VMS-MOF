@@ -14,40 +14,68 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     var currentElementName:NSString = ""
     var viewController:UIViewController?
     
+    let LoginResult = "XXX_LOGINResult"
+    let GetUserInfoResult = "GET_USER_INFOResult"
+    let GetUserNotificaionsResult = "XXX_GET_USER_NOTIFICATIONSResult"
+    
+    let APPROVE_REQResult = "XXX_APPROVE_REQUESTResult"
+    let CLOSE_REQResult = "XXX_CLOSE_FYI_NOTIFICATIONResult"
+    let REJECT_REQ_Result = "XXX_REJECT_REQUESTResult"
+    
+    var methodName:String = ""
+    var returnResultString:String = ""
+
+    
     init(viewController:UIViewController) {
         self.viewController = viewController
     }
     
-//    , success: (result: Bool) -> Void, failure: (error: NSError, msg:NSString) -> Void
     func login(username:String, password:String){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_LOGIN xmlns='http://tempuri.org/'><USERNAME>900189</USERNAME><PASSWORD>123456</PASSWORD></XXX_LOGIN></soap:Body></soap:Envelope>"
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_LOGIN xmlns='http://tempuri.org/'><USERNAME>"+username+"</USERNAME><PASSWORD>"+password+"</PASSWORD></XXX_LOGIN></soap:Body></soap:Envelope>"
         
-        let urlString = "http://87.101.205.237:1257/service.asmx"
-        
-        let url = NSURL(string: urlString)
-        
-        let theRequest = NSMutableURLRequest(URL: url!)
-        
-        let msgLength = String(soapMessage.length)
-        
-        theRequest.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
-        theRequest.addValue("http://tempuri.org/XXX_LOGIN", forHTTPHeaderField: "SOAPAction")
-        theRequest.HTTPMethod = "POST"
-        theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
-        
-        MBProgressHUD.showHUDAddedTo(viewController!.view, animated: true)
-        let connection = NSURLConnection(request: theRequest, delegate: self, startImmediately: true)
-        connection!.start()
-        
-        if (connection == true) {
-            var mutableData : Void = NSMutableData.initialize()
-        }
-        
+        self.processRequest(soapMessage, service: Common.LOGIN_SERVICE)
 
     }
     
+    func getUserInfo(username:String){
+        
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GET_USER_INFO xmlns='http://tempuri.org/'><USERNAME>"+username+"</USERNAME></GET_USER_INFO></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.GET_USER_INFO_SERVICE)
+        
+    }
+    
+    
+    func getUserNotifications(username:String, status:String){
+        
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_GET_USER_NOTIFICATIONS xmlns='http://tempuri.org/'><p_UserName>"+username+"</p_UserName><P_STATUS>"+status+"</P_STATUS></XXX_GET_USER_NOTIFICATIONS></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.GET_USER_NOTIFS_SERVICE)
+        
+    }
+    
+    func approveRequest(username:String, noteId:String){
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_APPROVE_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_APPROVE_REQUEST></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.APPROVE_REQ_SERVICE)
+        
+    }
+    func rejectRequest(username:String, noteId:String){
+        
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_REJECT_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_REJECT_REQUEST></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.REJECT_REQ_SERVICE)
+        
+    }
+    
+    func cancelRequest(username:String, noteId:String){
+        
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_CLOSE_FYI_NOTIFICATION xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_CLOSE_FYI_NOTIFICATION></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.CLOSE_REQ_SERVICE)
+        
+    }
     
     func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
         mutableData.length = 0;
@@ -59,10 +87,233 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     
     func connectionDidFinishLoading(connection: NSURLConnection!) {
+        
         let xmlParser = NSXMLParser(data: mutableData)
         xmlParser.delegate = self
         xmlParser.parse()
         xmlParser.shouldResolveExternalEntities = true
+        
+        MBProgressHUD.hideHUDForView(viewController!.view, animated: true)
+        if(returnResultString == ""){
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "try_again".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
+            return
+            
+        }
+        if(self.methodName == Common.LOGIN_SERVICE){
+            
+            // [{"P_USERNAME":"900189","V_VALUE":"Y","V_USER_TYPE":"EMP","V_FULL_NAME":"عبدالعزيز بن عبدالرحمن بن محمد العقيل","V_ORG_NAME":" الادارة العامة لتقنية المعلومات","V_ASSIGN_STATUS":"تعيين نشط"}]
+            
+            let loginJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+            
+            let loginJsonResDict:NSDictionary = loginJsonResArr.objectAtIndex(0) as! NSDictionary
+            let loginInfo:LoginInfo  = LoginInfo()
+            loginInfo.PUSERNAME = loginJsonResDict.valueForKey("P_USERNAME") as! String
+            loginInfo.VVALUE = loginJsonResDict.valueForKey("V_VALUE") as! String
+            
+            if(loginInfo.VVALUE == "Y"){
+                loginInfo.VUSERTYPE = loginJsonResDict.valueForKey("V_USER_TYPE") as! String
+                loginInfo.VFULLNAME = loginJsonResDict.valueForKey("V_FULL_NAME") as! String
+                loginInfo.VORGNAME = loginJsonResDict.valueForKey("V_ORG_NAME") as! String
+                loginInfo.VASSIGNSTATUS = loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String
+                
+                let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
+                sessionManager.loginInfo = loginInfo
+                
+                
+                // login success
+                let containerViewController = ContainerViewController()
+                let modalStyle: UIModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+                containerViewController.modalTransitionStyle = modalStyle
+                viewController!.presentViewController(containerViewController, animated: true, completion: nil)
+                
+            }else{
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "login_invalid".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+            }
+        }
+        else if self.methodName == Common.GET_USER_INFO_SERVICE{
+            
+            //                [{"P_USERNAME":"900189","V_FULL_NAME":"عبدالعزيز بن عبدالرحمن بن محمد العقيل","V_ORG_NAME":" الادارة العامة لتقنية المعلومات","V_ASSIGN_STATUS":"تعيين نشط","V_MOF_JOIN_DT":"1405/11/28","V_GOVT_JOIN_DT":"1403/12/18","V_GRADE_NAME":"11","V_EMPLOYEE_NUMBER":"0002852","V_EMP _TYPE":"EMP","V_ANNUAL_LEAVE_BAL":"152","V_EMERGENCY_LEAVE_BAL":"3"}]
+            if(!returnResultString.containsString("Error103")){
+                let loginJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+                
+                let loginJsonResDict:NSDictionary = loginJsonResArr.objectAtIndex(0) as! NSDictionary
+                let userInfo:UserInfo = UserInfo()
+                userInfo.PUSERNAME =  loginJsonResDict.valueForKey("P_USERNAME") as! String
+                userInfo.VFULLNAME =  loginJsonResDict.valueForKey("V_FULL_NAME") as! String
+                userInfo.VORGNAME =  loginJsonResDict.valueForKey("V_ORG_NAME") as! String
+                userInfo.VASSIGNSTATUS =  loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String
+                userInfo.VMOFJOINDT =  loginJsonResDict.valueForKey("V_MOF_JOIN_DT") as! String
+                userInfo.VGOVTJOINDT =  loginJsonResDict.valueForKey("V_GOVT_JOIN_DT") as! String
+                userInfo.VGRADENAME =  loginJsonResDict.valueForKey("V_GRADE_NAME") as! String
+                userInfo.VEMPLOYEENUMBER =  loginJsonResDict.valueForKey("V_EMPLOYEE_NUMBER") as! String
+                userInfo.VEMPTYPE =  loginJsonResDict.valueForKey("V_EMP_TYPE") as! String
+                userInfo.VANNUALLEAVEBAL =  loginJsonResDict.valueForKey("V_ANNUAL_LEAVE_BAL") as! String
+                userInfo.VEMERGENCYLEAVEBAL =  loginJsonResDict.valueForKey("V_EMERGENCY_LEAVE_BAL") as! String
+                
+                
+                let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
+                sessionManager.userInfo = userInfo
+                
+                viewController?.performSegueWithIdentifier("show_profile", sender: self)
+                
+            }else{
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "try_again".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+            
+            
+            }
+        }
+        else if self.methodName == Common.GET_USER_NOTIFS_SERVICE{
+            
+            let notificationsJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+//                {"P_USERNAME":"1016","P_MSG":null,"NOT_ID":655949.0,"STATUS":"OPEN","BEGIN_DATE":"2015-12-07T15:12:43","BEGIN_DATE_HIJ":"1437/02/25","TO_USER_ID":"1016","FROM_USER_NAME":"فهد المنيف","TO_USER_NAME":"سعد الوتيد","SUBJECT":"طلب إجازه الخاص بـ فهد المنيف","ABSENCE_TYPE_ID":"65","ABSENCE_TYPE_NAME":"طلب تسجيل الأجازة العادية","START_DATE":null,"START_DATE_HIJ":"1437-02-10T00:00:00","END_DATE":null,"END_DATE_HIJ":"1437-02-14T00:00:00","ABSENCE_DAYS":5.0,"MESSAGE_TYPE":"FYA"},
+        
+            
+            let notificationsViewController:NotificationsViewController = self.viewController as! NotificationsViewController
+            
+            notificationsViewController.loading = false;
+            NSLog("Notifications retreive succeded:");
+            
+            
+            var notification:UserNotification
+            var notificationDict:NSDictionary
+            for (var i:Int = 0; i<notificationsJsonResArr.count; i++){
+                notificationDict = notificationsJsonResArr.objectAtIndex(i) as! NSDictionary
+                notification = UserNotification()
+                
+                if((notificationDict.valueForKey("SUBJECT") as? NSNull) == nil){
+                    notification.SUBJECT = notificationDict.valueForKey("SUBJECT") as! String
+                }
+                
+                if((notificationDict.valueForKey("TO_USER_NAME") as? NSNull) == nil){
+                    notification.TOUSERNAME = notificationDict.valueForKey("TO_USER_NAME") as! String
+                }
+                
+                if((notificationDict.valueForKey("ABSENCE_TYPE_ID") as? NSNull) == nil){
+                    notification.ABSENCETYPEID = notificationDict.valueForKey("ABSENCE_TYPE_ID") as! String
+
+                }
+                
+                if((notificationDict.valueForKey("ABSENCE_TYPE_NAME") as? NSNull) == nil){
+                    notification.ABSENCETYPENAME = notificationDict.valueForKey("ABSENCE_TYPE_NAME") as! String
+                }
+                
+                if((notificationDict.valueForKey("ABSENCE_DAYS") as? NSNull) == nil){
+                    notification.ABSENCEDAYS = notificationDict.valueForKey("ABSENCE_DAYS") as! Double
+                }
+                
+                if((notificationDict.valueForKey("BEGIN_DATE_HIJ") as? NSNull) == nil){
+                    notification.BEGINDATEHIJ = notificationDict.valueForKey("BEGIN_DATE_HIJ") as! String
+                }
+                
+                if((notificationDict.valueForKey("START_DATE_HIJ") as? NSNull) == nil){
+                    notification.STARTDATEHIJ = notificationDict.valueForKey("START_DATE_HIJ") as! String
+                }
+                
+                if((notificationDict.valueForKey("END_DATE_HIJ") as? NSNull) == nil){
+                    notification.ENDDATEHIJ = notificationDict.valueForKey("END_DATE_HIJ") as! String
+                }
+                
+                if((notificationDict.valueForKey("P_USERNAME") as? NSNull) == nil){
+                    notification.PUSERNAME = notificationDict.valueForKey("P_USERNAME") as! String
+                }
+                
+                if((notificationDict.valueForKey("MESSAGE_TYPE") as? NSNull) == nil){
+                    notification.MESSAGETYPE = notificationDict.valueForKey("MESSAGE_TYPE") as! String
+                }
+                
+                if((notificationDict.valueForKey("TO_USER_NAME") as? NSNull) == nil){
+                    notification.TOUSERNAME = notificationDict.valueForKey("TO_USER_NAME") as! String
+                }
+                
+                if((notificationDict.valueForKey("STATUS") as? NSNull) == nil){
+                    notification.STATUS = notificationDict.valueForKey("STATUS") as! String
+                }
+                
+                notificationsViewController.notificationsList.addObject(notification)
+            
+            }
+            
+            notificationsViewController.tableView!.reloadData()
+            notificationsViewController.stopRefreshControl()
+        }else if(self.methodName == Common.APPROVE_REQ_SERVICE){
+            
+            
+            let reqJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+            
+            let reqJsonResDict:NSDictionary = reqJsonResArr.objectAtIndex(0) as! NSDictionary
+            
+            
+            if ((reqJsonResDict.valueForKey("P_MSG")?.isEqualToString("Done")) != nil) {
+                let alert:UIAlertView
+                alert = UIAlertView(title: nil, message: "your_request_isapproved".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
+                
+                CustomAlertViewDelegate.showAlertView(alert) { (alertView, buttonIndex) -> Void in
+                    if(alertView.buttonTitleAtIndex(buttonIndex) == "ok_dialog".localized){
+                        self.viewController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                }
+            
+            }else{
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "your_request_didnot_done".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+            
+            
+            }
+        }else if(self.methodName == Common.REJECT_REQ_SERVICE){
+            
+            
+            let reqJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+            
+            let reqJsonResDict:NSDictionary = reqJsonResArr.objectAtIndex(0) as! NSDictionary
+            
+            
+            if ((reqJsonResDict.valueForKey("P_MSG")?.isEqualToString("Done")) != nil) {
+                let alert:UIAlertView
+                alert = UIAlertView(title: nil, message: "your_request_isrejected".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
+                
+                CustomAlertViewDelegate.showAlertView(alert) { (alertView, buttonIndex) -> Void in
+                    if(alertView.buttonTitleAtIndex(buttonIndex) == "ok_dialog".localized){
+                        self.viewController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                }
+
+                
+            }else{
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "your_request_didnot_done".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+                
+                
+            }
+        }else if(self.methodName == Common.CLOSE_REQ_SERVICE){
+            
+            
+            let reqJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+            
+            let reqJsonResDict:NSDictionary = reqJsonResArr.objectAtIndex(0) as! NSDictionary
+            
+            
+            if ((reqJsonResDict.valueForKey("P_MSG")?.isEqualToString("Done")) != nil) {
+                let alert:UIAlertView
+                
+                alert = UIAlertView(title: nil, message: "your_request_isclosed".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
+                
+                CustomAlertViewDelegate.showAlertView(alert) { (alertView, buttonIndex) -> Void in
+                    if(alertView.buttonTitleAtIndex(buttonIndex) == "ok_dialog".localized){
+                        self.viewController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                }
+                
+                
+            }else{
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "your_request_didnot_done".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+                
+                
+            }
+        }
         
     }
     
@@ -77,16 +328,63 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     func parser(parser: NSXMLParser, foundCharacters string: String) {
         
-        if currentElementName == Common.LoginResult {
+        NSLog(string)
+//        if currentElementName == LoginResult {
+        
+            returnResultString = returnResultString + string
             
-            MBProgressHUD.hideHUDForView(viewController!.view, animated: true)
             
-            let containerViewController = ContainerViewController()
-            let modalStyle: UIModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-            containerViewController.modalTransitionStyle = modalStyle
-            viewController!.presentViewController(containerViewController, animated: true, completion: nil)
-        }
+//        }
+//        else if currentElementName == GetUserInfoResult{
+//            
+//            returnResultString = returnResultString + string
+//            
+//        } else if currentElementName == GetUserNotificaionsResult{
+//            
+//            returnResultString = returnResultString + string
+//            
+//        }else if currentElementName == GetUserNotificaionsResult{
+//            
+//            returnResultString = returnResultString + string
+//            
+//        }else if currentElementName == GetUserNotificaionsResult{
+//            
+//            returnResultString = returnResultString + string
+//            
+//        }else if currentElementName == GetUserNotificaionsResult{
+//            
+//            returnResultString = returnResultString + string
+//            
+//        }
+        
     }
+    
+    func processRequest( soapMessage:NSString,  service:String){
+    
+        self.methodName = service
+        let urlString = "http://87.101.205.237:1257/service.asmx"
+        
+        let url = NSURL(string: urlString)
+        
+        let theRequest = NSMutableURLRequest(URL: url!)
+        
+        let msgLength = String(soapMessage.length)
+        
+        theRequest.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        theRequest.addValue(msgLength, forHTTPHeaderField: "Content-Length")
+        theRequest.addValue("http://tempuri.org/"+service, forHTTPHeaderField: "SOAPAction")
+        theRequest.HTTPMethod = "POST"
+        theRequest.HTTPBody = soapMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) // or false
+        if service != Common.GET_USER_NOTIFS_SERVICE{
+            MBProgressHUD.showHUDAddedTo(viewController!.view, animated: true)
+        }
+        let connection = NSURLConnection(request: theRequest, delegate: self, startImmediately: true)
+        connection!.start()
+        
+        if (connection == true) {
+            var mutableData : Void = NSMutableData.initialize()
+        }
+}
     
     
    
