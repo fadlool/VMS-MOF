@@ -15,6 +15,8 @@ protocol SidePanelViewControllerDelegate {
 
 class SidePanelViewController: UIViewController {
     
+    @IBOutlet weak var userNameLabel: UILabel!
+    
     @IBOutlet weak var tableView: UITableView!
     var delegate: SidePanelViewControllerDelegate?
     
@@ -29,6 +31,11 @@ class SidePanelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        let sessionManager:SessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        
+        self.userNameLabel.text = loginInfo.PUSERNAME
         tableView.reloadData()
     }
     

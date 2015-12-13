@@ -17,14 +17,38 @@ protocol MainViewControllerDelegate {
     optional func collapseSidePanels()
 }
 
-class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsViewControllerDelegate {
+class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsViewControllerDelegate,UITabBarDelegate {
     
+    @IBOutlet weak var tabBar: UITabBar!
     
     @IBOutlet weak var noItemsView: UIView!
     @IBOutlet weak var topNavigationItem: UINavigationItem!
     var delegate: MainViewControllerDelegate?
     var notifisViewControllerDelegate: NotificationsViewController?
+    
+    
+    func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!) {
+        var searchEngineURLString: NSString! = "";
+        
+        switch item.tag  {
+        case 0:
+            searchEngineURLString = "https://www.bing.com"
+            break
+        case 1:
+            searchEngineURLString = "https://www.duckduckgo.com"
+            break
+        case 2:
+            searchEngineURLString = "https://www.google.com"
+            break
+        default:
+            searchEngineURLString = "https://www.bing.com"
+            break
+        }
+    }
+    
     override func viewDidLoad() {
+        
+        self.tabBar.selectedItem = tabBar.items![0] as UITabBarItem;
         
         if(NSUserDefaults.standardUserDefaults().objectForKey(Common.UserLanguage)!.integerValue == Language.Arabic.rawValue){
             
@@ -124,16 +148,11 @@ class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsVi
             
             if(self.notifisViewControllerDelegate?.selectedNotificaion?.MESSAGETYPE == "FYI"){
                 detailsViewController.navigationItem.title = "info_purpose".localized
-//                detailsViewController.approveBtn.hidden = true
-//                detailsViewController.cancelBtn.hidden = true
-//                detailsViewController.closeBtn.hidden = false
+
             }
             else if(self.notifisViewControllerDelegate?.selectedNotificaion?.MESSAGETYPE == "FYA"){
                 detailsViewController.navigationItem.title = "approve_purpose".localized
                 
-//                detailsViewController.closeBtn.hidden = true
-//                detailsViewController.approveBtn.hidden = false
-//                detailsViewController.cancelBtn.hidden = false
             
             }
             detailsViewController.notificationsViewController = self.notifisViewControllerDelegate
@@ -143,7 +162,7 @@ class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsVi
     
 }
 
-extension MainViewController: SidePanelViewControllerDelegate {
+extension MainViewController: SidePanelViewControllerDelegate,UIAlertViewDelegate {
     func sideMenuItemSelected(sideMenuItem: SideMenuItem) {
        
         if(sideMenuItem.order == Common.MenuProfileOrder){
@@ -158,7 +177,16 @@ extension MainViewController: SidePanelViewControllerDelegate {
             print("The letter A")
             
         }else if sideMenuItem.order == Common.MenuLogoutOrder{
-            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            let alert:UIAlertView
+            alert = UIAlertView(title:"confirm_msg".localized, message: "logout_confirm".localized, delegate: self, cancelButtonTitle: "cancel_dialog".localized, otherButtonTitles: "ok_dialog".localized)
+            
+            CustomAlertViewDelegate.showAlertView(alert) { (alertView, buttonIndex) -> Void in
+                if(alertView.buttonTitleAtIndex(buttonIndex) == "ok_dialog".localized){
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+            }
+            
             
         }else if sideMenuItem.order == Common.MenuSelfVacationOrder{
             self.performSegueWithIdentifier("showSelfVacation", sender: self)

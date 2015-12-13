@@ -54,7 +54,7 @@ class NotificationsViewController: UITableViewController {
         self.tableView.addSubview(self.refreshBar!)
         
         self.mwTopRefreshControl =  self.refreshBar;
-        self.mwBottomRefreshControl = self.refreshBar;
+//        self.mwBottomRefreshControl = self.refreshBar;
         
         self.startRefreshControl()
         
@@ -69,6 +69,7 @@ class NotificationsViewController: UITableViewController {
     func startRefreshControl(){
         
         self.mwTopRefreshControl?.beginRefreshing()
+          self.tableView.backgroundColor =  UIColor(red: 0.91, green: 0.89, blue: 0.78, alpha: 1.0)
         self.tableView.setContentOffset(CGPointMake(0, -self.mwTopRefreshControl!.frame.size.height), animated:true)
         self.refreshView(self.mwTopRefreshControl!)
     }
@@ -78,19 +79,11 @@ class NotificationsViewController: UITableViewController {
         self.mwTopRefreshControl?.endRefreshing()
     }
     
-    
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-         return 10
+   
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
     }
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 10
-//    }
-//    override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        
-//        let v:UIView = UIView()
-//        v.backgroundColor = UIColor(red: 0.91, green: 0.89, blue: 0.78, alpha: 1.0)
-//        return v;
-//    }
+
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
             let v:UIView = UIView()
@@ -120,7 +113,7 @@ class NotificationsViewController: UITableViewController {
             // Configure the cell...
             cell.notificationTitleLabel.text = contentItem.SUBJECT
             cell.dateLabel.text = contentItem.BEGINDATEHIJ
-            cell.backgroundColor = UIColor.clearColor()
+            cell.backgroundColor = UIColor.whiteColor()
             cell.layer.borderColor = UIColor.lightTextColor().CGColor
             cell.layer.borderWidth = 1
             cell.clipsToBounds = true
@@ -141,22 +134,6 @@ class NotificationsViewController: UITableViewController {
         
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//         if(segue.identifier == "showDetails"){
-//            
-//            let detailsViewController:NotificationDetailsViewController = segue.destinationViewController as! NotificationDetailsViewController
-//            
-//            if(self.selectedNotificaion?.MESSAGETYPE == "FYI"){
-//                detailsViewController.navigationItem.title = "info_purpose".localized
-//            }
-//            else if(self.selectedNotificaion?.MESSAGETYPE == "FYA"){
-//                detailsViewController.navigationItem.title = "approve_purpose".localized
-//                
-//            }
-//            detailsViewController.notificationsViewController = self
-//            
-//        }
-//    }
     func loadLatestNotifications(){
         
         self.notificationsList.removeAllObjects()
@@ -169,7 +146,6 @@ class NotificationsViewController: UITableViewController {
         let sessionManager:SessionManager = SessionManager.sharedSessionManager()
         let loginInfo:LoginInfo = sessionManager.loginInfo
         
-//        let mainController:MainViewController =  self.delegate!
         let services:Services = Services(viewController: self)
         
         services.getUserNotifications(loginInfo.PUSERNAME, status: self.status)
