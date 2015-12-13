@@ -13,7 +13,6 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     var mutableData:NSMutableData  = NSMutableData()
     var currentElementName:NSString = ""
     var viewController:UIViewController?
-    
     let LoginResult = "XXX_LOGINResult"
     let GetUserInfoResult = "GET_USER_INFOResult"
     let GetUserNotificaionsResult = "XXX_GET_USER_NOTIFICATIONSResult"
@@ -54,6 +53,14 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
         self.processRequest(soapMessage, service: Common.GET_USER_NOTIFS_SERVICE)
         
     }
+    func getEmployeesList(){
+        
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_GET_EMP_LIST xmlns='http://tempuri.org/'></XXX_GET_EMP_LIST></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.GET_EMPLOYEES_LIST_SERVICE)
+        
+    }
+    
     
     func approveRequest(username:String, noteId:String){
         let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_APPROVE_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_APPROVE_REQUEST></soap:Body></soap:Envelope>"
@@ -76,6 +83,15 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
         self.processRequest(soapMessage, service: Common.CLOSE_REQ_SERVICE)
         
     }
+    
+    func vacationRequest(username:String, vacationrequest:VacationRequest){
+        
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>"+username+"</P_UserName><P_Absence_type_ID>"+vacationrequest.P_Absence_type_ID+"</P_Absence_type_ID><P_ST_DATE>"+vacationrequest.P_ST_DATE+"</P_ST_DATE><P_END_DATE>"+vacationrequest.P_END_DATE+"</P_END_DATE><P_DAYS>"+vacationrequest.P_DAYS+"</P_DAYS><P_COMMENT1>"+vacationrequest.P_COMMENT1+"</P_COMMENT1><P_COMMENT2>"+vacationrequest.P_COMMENT2+"</P_COMMENT2></CREATE_VACATION_REQUEST></soap:Body></soap:Envelope>"
+        
+        self.processRequest(soapMessage, service: Common.REQUEST_VACATION_SERVICE)
+        
+    }
+    
     
     func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
         mutableData.length = 0;
@@ -232,6 +248,10 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                     notification.STATUS = notificationDict.valueForKey("STATUS") as! String
                 }
                 
+                if((notificationDict.valueForKey("NOT_ID") as? NSNull) == nil){
+                    notification.NOTID = notificationDict.valueForKey("NOT_ID") as! Double
+                }
+                
                 notificationsViewController.notificationsList.addObject(notification)
             
             }
@@ -313,6 +333,34 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 
                 
             }
+        }
+        
+        else if(self.methodName == Common.GET_EMPLOYEES_LIST_SERVICE){
+            
+            let reqJsonResArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+            
+//            Log.v("XXX_GET_EMP_LIST", results + " ");
+//            final JSONArray jsonArray = new JSONArray(GetEmployeeListService.results);
+            if(reqJsonResArr.count > 0) {
+                var jsonObject:NSDictionary
+                var dropDownItem:DropDownItem
+                let filterVC:FilterTableViewController = self.viewController as! FilterTableViewController
+                for (var i = 0; i < reqJsonResArr.count; i++) {
+                      jsonObject = reqJsonResArr.objectAtIndex(i) as! NSDictionary
+                    dropDownItem = DropDownItem(idx: String(jsonObject.valueForKey("PERSON_ID")!), title: String(jsonObject.objectForKey("PERSON_NAME")!))
+                        filterVC.allTableData.addObject(dropDownItem)
+                }
+                
+                filterVC.tableView.reloadData()               
+            }
+        
+        
+        }
+        
+        else if(self.methodName == Common.REQUEST_VACATION_SERVICE){
+        
+        
+        
         }
         
     }

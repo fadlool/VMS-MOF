@@ -22,6 +22,8 @@ public class Common: NSObject {
     public static let APPROVE_REQ_SERVICE = "XXX_APPROVE_REQUEST"
     public static let CLOSE_REQ_SERVICE = "XXX_CLOSE_FYI_NOTIFICATION"
     public static let REJECT_REQ_SERVICE = "XXX_REJECT_REQUEST"
+    public static let GET_EMPLOYEES_LIST_SERVICE = "XXX_GET_EMP_LIST"
+    public static let REQUEST_VACATION_SERVICE = "CREATE_VACATION_REQUEST"
     
     public static let MenuProfileOrder: Int = 0
     public static let MenuIdentityReqOrder: Int = 1
@@ -63,7 +65,105 @@ public class Common: NSObject {
         NSUserDefaults.standardUserDefaults().synchronize();
         
     }
- 
+    public class func getDateString(cal: NSDate, isHijri:Bool)->NSString {
+        
+        var dateString = ""
+        
+        let dateFormat = DATE_FORMAT_2
+        
+        var language = NSUserDefaults.standardUserDefaults().objectForKey(UserLanguage)as! Int
+        
+        // Create a Gregorian Calendar
+        let gregorianCalendar: NSCalendar? = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
+        // Set up components of a Gregorian date
+        let  gregorianComponents:NSDateComponents = NSCalendar.currentCalendar().components( [NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: cal)
+        
+        //        NSLog(@"[In Gregorian calendar ->] Day: %ld, Month: %ld, Year:%ld",
+        //        (long)[gregorianComponents day],
+        //        (long)[gregorianComponents month],
+        //        (long)[gregorianComponents year]);
+        
+        
+        //        gregorianComponents.day = [gregorianComponents day];
+        //        gregorianComponents.month = [gregorianComponents month];
+        //        gregorianComponents.year = [gregorianComponents year];
+        
+        // Create the date
+        var date: NSDate? = gregorianCalendar?.dateFromComponents(gregorianComponents)
+        
+        //        NSLog(@"[In Hijri calendar ->] Day: %ld, Month: %ld, Year:%ld",
+        //        (long)[hijriComponents day],
+        //        (long)[hijriComponents month],
+        //        (long)[hijriComponents year]);
+        
+        
+//        let crsServices:CRSServices = CRSServices()
+//        let arraysDictionary:NSDictionary  = crsServices.dictionaryOfArrays()
+//        let hijriMonthsArray:NSArray = arraysDictionary.objectForKey("array_hijri_months") as! NSArray;
+//        let gregMonthsArray:NSArray = arraysDictionary.objectForKey("array_greg_months")as! NSArray;
+        
+        if (isHijri && dateFormat.isEqual(DATE_FORMAT_1)) {
+            
+            // Then create an Islamic calendar
+            let hijriCalendar: NSCalendar? = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)
+            
+            // And grab those date components for the same date
+            let hijriComponents: NSDateComponents  = hijriCalendar!.components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: cal)
+            
+            
+            dateString = "\(hijriComponents.day) \(hijriComponents.month) \(hijriComponents.year)"
+            
+            
+        } else if (isHijri && dateFormat.isEqual(DATE_FORMAT_2)) {
+            
+            // Then create an Islamic calendar
+            let hijriCalendar: NSCalendar? = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)
+            
+            // And grab those date components for the same date
+            let hijriComponents: NSDateComponents  = hijriCalendar!.components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: cal)
+            
+            var monthStr = ""
+            var dayStr = ""
+            
+            if(hijriComponents.month < 10){
+                monthStr = "0\(hijriComponents.month)"
+            }else{
+                monthStr = String(hijriComponents.month)
+            }
+            
+            if(hijriComponents.day < 10){
+                dayStr = "0\(hijriComponents.day)"
+            }else{
+                dayStr = String(hijriComponents.day)
+            }
+            
+             dateString = "\(hijriComponents.year)/\(monthStr)/\(dayStr)"
+            
+        } else if (!isHijri && dateFormat.isEqual(DATE_FORMAT_1)) {
+            dateString = "\(gregorianComponents.day) \(gregorianComponents.month) \(gregorianComponents.year)"
+            
+        } else if (!isHijri  && dateFormat.isEqual(DATE_FORMAT_2)) {
+            var monthStr = ""
+            var dayStr = ""
+            
+            if(gregorianComponents.month < 10){
+                monthStr = "0\(gregorianComponents.month)"
+            }else{
+                monthStr = String(gregorianComponents.month)
+            }
+            if(gregorianComponents.day < 10){
+                dayStr = "0\(gregorianComponents.day)"
+            }else{
+                dayStr = String(gregorianComponents.day)
+            }
+                        
+            dateString = "\(gregorianComponents.year) /"+monthStr+" / "+dayStr
+            
+        }
+        
+        return dateString;
+        
+    }
     
     
 }
