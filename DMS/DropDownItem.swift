@@ -1,50 +1,32 @@
 //
-//  DropDownItem.swift
-//  CRS
+//  VacType.swift
+//  VMS
 //
-//  Created by Mohamed Fadl on 12/23/14.
-//  Copyright (c) 2014 Compulink. All rights reserved.
+//  Created by Mohamed Fadl on 12/10/15.
+//  Copyright © 2015 Compulink. All rights reserved.
 //
 
 import Foundation
 
-public class DropDownItem:NSObject {
+class DropDownItem:NSObject {
+    var idx:String
+    var title:String
     
-    var id_:Int
-    var type:Int
-    var arabicName:String
-    var englishName:String
-    var telegramSendingWay:Bool
-    var language:Int
-    
-    
-    public init( id_:Int,  arabicName:String,  englishName:String,  language:Int) {
-        self.id_ = id_
-        self.arabicName = arabicName
-        self.englishName = englishName
-        self.language = language
-        self.type  = 0
-        self.telegramSendingWay = false
-        
-    }
-    public init( id_:Int, type:Int,  arabicName:String,  englishName:String,  language:Int) {
-        self.id_ = id_
-        self.arabicName = arabicName
-        self.englishName = englishName
-        self.language = language
-        self.type  = type
-        self.telegramSendingWay = false
-        
-    }
-    override public func isEqual(object: AnyObject?) -> Bool { // for NSArrays and NSDictionaries
-        if let dropDownItem = object as? DropDownItem {
-            // just use our "==" function
-            return (dropDownItem.id_ == self.id_ && dropDownItem.type == self.type)
-            
-        } else { return false }
+    public init(idx:String, title:String){
+        self.idx = idx
+        self.title = title
     }
     
-}
-public func ==(lhs: DropDownItem, rhs: DropDownItem) -> Bool {
-    return (lhs.id_ == rhs.id_ && lhs.type == rhs.type)
+//    required override public init() { // <== Need "required" because we need to call dynamicType() below
+//        self.idx = 0;
+//        self.title = "";
+//    }
+//    public func copyWithZone(zone: NSZone) -> AnyObject { // <== NSCopying
+//        // *** Construct "one of my current class". This is why init() is a required initializer
+//        let theCopy = self.dynamicType.init()
+//        theCopy.idx = self.idx;
+//        theCopy.title = self.title;
+//        return theCopy
+//    }
+    
 }
