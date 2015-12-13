@@ -141,22 +141,12 @@
     // otherwise, return the description, just like the toString() method in Java
     // else, return nil to prevent exception
 
-//    if ([obj isKindOfClass:[DropDownItem class]]){
-//        DropDownItem *itm = obj;
-//        
-//        int language = [[SessionManager sharedSessionManager] sessionInfo].language;
-//        
-//        if (language == Arabic) {
-//            return itm.arabicName;
-//        }else{
-//            return itm.englishName;
-//        }
-//    }
-//    if ([obj isKindOfClass:[CrsType class]]){
-//        CrsType *itm = obj;
-//        
-//        return itm.title;
-//    }
+        
+    if ([obj isKindOfClass:[DropDownItem class]]){
+        DropDownItem *itm = obj;
+        
+        return itm.title;
+    }
 
     if ([obj respondsToSelector:@selector(description)])
         return [obj performSelector:@selector(description)];
