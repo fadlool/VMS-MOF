@@ -91,14 +91,18 @@
 "start_date"="تاريخ البداية";
 "end_date"="تاريخ النهايه";
 "day_no"="عدد الايام";
+"enter_day_no"="فضلا ادخل عدد الايام";
 "employ_temp"="الموظف البديل";
 "notice_1"="ملاحظات 1";
 "notice_2"="ملاحظات 2";
 "exchnge_date"="تاريخ بداية التحويل";
 "next"="التالي";
 "cancel"="الغاء";
-"select_date_"="فضلا اختر تاريخ";
+"select_date_start"="فضلا اختر تاريخ البداية";
 "emp_details"="بيانات الموظف";
 "vacation_details"="بيانات الأجازة";
 "info_purpose"="للعلم فقط";
 "approve_purpose"="للإعتماد";
+
+"enter_vac_type"="فضلا أختر نوع الاجازة";
+"confirm_msg" = "رسالة تأكيد";
