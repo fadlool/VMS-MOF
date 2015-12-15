@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1016" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
                                 <rect key="frame" x="87" y="464" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0yX-K2-I7f"/>
@@ -37,7 +37,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xyz4539" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
                                 <rect key="frame" x="87" y="502" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1bt-4f-OFy"/>
@@ -70,7 +70,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="نظام إدارة الأجازات" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjj-fa-qK8">
-                                <rect key="frame" x="114" y="173" width="186" height="21"/>
+                                <rect key="frame" x="114" y="138" width="186" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="186" id="bmw-3o-gSR"/>
                                 </constraints>
@@ -79,7 +79,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchLogo" highlightedImage="LaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="tE8-XS-Krj">
-                                <rect key="frame" x="157" y="65" width="100" height="100"/>
+                                <rect key="frame" x="157" y="30" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="2MU-41-We2"/>
                                     <constraint firstAttribute="height" constant="100" id="jRD-pG-Hv3"/>
@@ -94,7 +94,7 @@
                             <constraint firstItem="KfR-ds-SIa" firstAttribute="top" secondItem="fjj-fa-qK8" secondAttribute="bottom" constant="263" id="Jav-w8-UH2"/>
                             <constraint firstItem="fjj-fa-qK8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MXI-K0-FDk"/>
                             <constraint firstItem="Qt8-qI-iEC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oma-dQ-3hm"/>
-                            <constraint firstItem="tE8-XS-Krj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="45" id="UHa-kz-gNU"/>
+                            <constraint firstItem="tE8-XS-Krj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="UHa-kz-gNU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="KfR-ds-SIa" secondAttribute="trailing" constant="59" id="Vom-ha-TXj"/>
                             <constraint firstItem="yJ0-4n-H3J" firstAttribute="top" secondItem="Qt8-qI-iEC" secondAttribute="bottom" constant="21" id="WJ3-KP-ZAo"/>
                             <constraint firstItem="KfR-ds-SIa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="YUx-1L-ZPq"/>
@@ -1560,7 +1560,10 @@
                                                         <constraint firstAttribute="width" constant="184" id="l5k-5u-e5i"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                    <connections>
+                                                        <action selector="commentOneEditChanged:" destination="7gN-Nk-Vgb" eventType="editingChanged" id="DDG-fe-Kju"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1610,7 +1613,10 @@
                                                         <constraint firstAttribute="width" constant="184" id="iOO-lc-ALF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                    <connections>
+                                                        <action selector="commentTwoEditChanged:" destination="7gN-Nk-Vgb" eventType="editingDidEnd" id="Jx0-Uz-nNi"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -1641,6 +1647,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="طلب أاجازة" id="Ii9-9g-ILO"/>
                     <connections>
+                        <outlet property="alterEmpCell" destination="wsS-wf-6lf" id="CnL-2O-71B"/>
                         <outlet property="alternateEmpAutoCompTxtField" destination="5KT-eN-GcQ" id="RTX-Dx-WKC"/>
                         <outlet property="empNameLabel" destination="FAE-nT-CPk" id="WK5-c5-O9f"/>
                         <outlet property="empNoLabel" destination="RpZ-zi-JYu" id="f4O-iU-7gC"/>
