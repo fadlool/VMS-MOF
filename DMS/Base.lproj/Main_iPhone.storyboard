@@ -69,7 +69,7 @@
                                     <action selector="loginBtnTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aio-g2-T91"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="نظام إدارة الأجازات" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjj-fa-qK8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjj-fa-qK8">
                                 <rect key="frame" x="114" y="138" width="186" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="186" id="bmw-3o-gSR"/>
@@ -99,7 +99,7 @@
                             <constraint firstItem="yJ0-4n-H3J" firstAttribute="top" secondItem="Qt8-qI-iEC" secondAttribute="bottom" constant="21" id="WJ3-KP-ZAo"/>
                             <constraint firstItem="KfR-ds-SIa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="YUx-1L-ZPq"/>
                             <constraint firstItem="KfR-ds-SIa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hBC-nR-tdi"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yJ0-4n-H3J" secondAttribute="bottom" constant="100" id="oHU-FF-Edb"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yJ0-4n-H3J" secondAttribute="bottom" constant="50" id="oHU-FF-Edb"/>
                             <constraint firstItem="Qt8-qI-iEC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="67" id="rk3-hY-gQC"/>
                             <constraint firstItem="yJ0-4n-H3J" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uc0-sJ-h41"/>
                             <constraint firstItem="KfR-ds-SIa" firstAttribute="top" secondItem="tE8-XS-Krj" secondAttribute="bottom" constant="181" id="wi7-Fl-aI0"/>
@@ -171,7 +171,7 @@
                                     <tabBarItem title="التبليغات" image="VacationIcon" id="fT8-ZL-pJC"/>
                                     <tabBarItem title="طلب إحالة كشف طبي" image="MenuMedicalReq" id="2py-44-hy5"/>
                                     <tabBarItem title="طلب انتداب" image="MenuDelegateReq" id="vZq-Lg-KZM"/>
-                                    <tabBarItem title="طلب تعريف" image="MenuReq" id="kIk-hF-vG1"/>
+                                    <tabBarItem title="خطاب تعريف" image="MenuReq" id="kIk-hF-vG1"/>
                                 </items>
                             </tabBar>
                         </subviews>
