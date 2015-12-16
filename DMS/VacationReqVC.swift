@@ -35,8 +35,9 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
     
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
-    weak var selectedEmp:DropDownItem!
+    var selectedEmp:DropDownItem?
     
+    @IBOutlet weak var alterEmpCell: UITableViewCell!
     var startDate:NSDate?
     var endDate:NSDate?
     
@@ -45,6 +46,11 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
     
     
     func validate() ->Bool {
+        
+        let sessionManager:SessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let userInfo:UserInfo? = sessionManager.userInfo
+        
         var isValid:Bool = true;
         if (self.startDate == nil) {
             let alertView:UIAlertView  = UIAlertView(title: nil, message: "select_date_start".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
@@ -60,24 +66,53 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             alertView.show()
             isValid = false;
     }
-//        else if (self.vacationRequest. == "") {
-//    Toast.makeText(getApplicationContext(), "فضلا ادخل الموظف البديل", Toast.LENGTH_SHORT).show();
-//    isValid = false;
-//    }
-    //        if(startDateID.getText().toString().length()==0||
-    //                dayNoID.getText().toString().length()==0||
-    //                itemPos==0
-    //                ){
-    //            isValid=false;
-    //        }
-    //        else{
-    //            isValid=true;
-    //        }
+        else if (userInfo?.VEMPTYPE != "EMP" && self.selectedEmp == nil) {
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "enter_alternate_emp".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
+            isValid = false;
+        }
     return isValid;
     
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if(textField.returnKeyType == UIReturnKeyType.Next){
+            self.notesLabel_2.becomeFirstResponder()
+            
+        }else{
+            self.notesLabel_2.resignFirstResponder()
+            
+        }
+        return true
+    }
     
+    func keyboardWillShow(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardHeight = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
+                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight, 0)
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            if let keyboardHeight = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue.size.height {
+                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, self.tableView.contentInset.bottom - keyboardHeight , 0)
+            }
+        }
+    }
+    
+    @IBAction func commentOneEditChanged(sender: AnyObject) {
+        
+        let txtField:UITextField = sender as! UITextField
+        self.vacationRequest.P_COMMENT1 = txtField.text!
+    }
+    
+    @IBAction func commentTwoEditChanged(sender: AnyObject) {
+        let txtField:UITextField = sender as! UITextField
+        self.vacationRequest.P_COMMENT2 = txtField.text!
+    }
     
     func actionTapped(){
         let sessionManager:SessionManager = SessionManager.sharedSessionManager()
@@ -96,23 +131,13 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             }
         }
     }
+    
     @IBAction func noOfDaysEditingChnaged(sender: UITextField) {
         if(sender.text! != ""){
-            self.vacationRequest.P_DAYS = sender.text!
         
             let value:Double = Double(sender.text!)!
         
-            if(self.startDate == nil){
-                let alertView:UIAlertView  = UIAlertView(title: nil, message: "select_date_start".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
-                alertView.show()
-                return
-            }
-            
-            self.endDate = self.startDate!.dateByAddingTimeInterval(60*60*24*value)
-            let dateString:NSString = Common.getDateString(self.endDate!, isHijri: true)
-            self.endDatePicker.text = dateString as String
-            self.vacationRequest.P_END_DATE = Common.getDateString(self.endDate!, isHijri: false) as String
-            self.endDateLabel.text = self.endDate!.descriptionWithLocale( NSLocale(localeIdentifier: "ar_EG"))
+            self.updateEndDate(value)
             
 
         }
@@ -124,22 +149,13 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
         let loginInfo:LoginInfo = sessionManager.loginInfo
         let userInfo:UserInfo? = sessionManager.userInfo
         
+        self.normalVacLabel.text = userInfo!.VANNUALLEAVEBAL
+        self.forcedVacLabel.text = userInfo!.VEMERGENCYLEAVEBAL
         
         self.empNameLabel.text = loginInfo.VFULLNAME
         self.empNoLabel.text = loginInfo.PUSERNAME
         self.workGroupLabel.text = loginInfo.VORGNAME
-        
-        if(userInfo != nil){
-            self.normalVacLabel.text = userInfo!.VANNUALLEAVEBAL
-            self.forcedVacLabel.text = userInfo!.VEMERGENCYLEAVEBAL
-            if (userInfo?.VEMPTYPE == "EMP") {
-                self.alternateEmpAutoCompTxtField.hidden = true
-            } else {
-                self.alternateEmpAutoCompTxtField.hidden = false
-            }
-        
-        }
-        
+    
         
         let backButton:UIBarButtonItem  = UIBarButtonItem(title: "back".localized, style: UIBarButtonItemStyle.Done, target: self, action: "backTapped")
         self.navigationItem.leftBarButtonItem = backButton;
@@ -161,27 +177,102 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
         
         
         self.vacDaysTxtField.delegate = self;
+        
+        
+        if (userInfo?.VEMPTYPE == "EMP") {
+            self.alterEmpCell.hidden = true
+        
+        }else{
+            self.alterEmpCell.hidden = false
+        
+        }
+        
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTap:")
+        self.view.addGestureRecognizer(tap)
+        
+        let screenBound:CGRect  = UIScreen().bounds
+        let screenSize:CGSize = screenBound.size
+        let screenWidth:CGFloat = screenSize.width
+        
+        let numberToolbar:UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
+        
+        numberToolbar.barStyle = UIBarStyle.BlackTranslucent;
+        numberToolbar.items = [UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: "cancelNumberPad"),UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
+        UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "doneWithNumberPad")]
+        
+        numberToolbar.sizeToFit()
+        self.vacDaysTxtField.inputAccessoryView = numberToolbar
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardDidShowNotification, object: nil)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardDidHideNotification, object: nil)
+        
+        
+        self.notesLabel_1.delegate = self;
+        self.notesLabel_2.delegate = self;
+    }
+    
+    func cancelNumberPad(){
+        
+        self.vacDaysTxtField.resignFirstResponder()
+        self.vacDaysTxtField.text = ""
+        
+    }
+    func doneWithNumberPad(){
+        if(self.vacDaysTxtField.text! != ""){
+            
+            let value:Double = Double(self.vacDaysTxtField.text!)!
+            
+            self.updateEndDate(value)
+            
+            
+        }
+        
+        self.vacDaysTxtField.resignFirstResponder()
+        
+    }
+    
+    func handleTap(recognizer: UITapGestureRecognizer) {
+        if (self.vacDaysTxtField.isFirstResponder() ) {
+            self.vacDaysTxtField.resignFirstResponder()
+        }
+        if (self.notesLabel_1.isFirstResponder()) {
+            self.notesLabel_1.resignFirstResponder()
+        }
+        
+        if (self.notesLabel_2.isFirstResponder()) {
+            self.notesLabel_2.resignFirstResponder()
+        }
     }
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
         let stepper:UIStepper = sender as! UIStepper
-        if(stepper.value >= 0){
-                if(self.startDate == nil){
-                    let alertView:UIAlertView  = UIAlertView(title: nil, message: "select_date_start".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
-                    alertView.show()
-                    return
-                }
+        self.updateEndDate(stepper.value)
+    }
+    
+    func updateEndDate(value:Double){
+    
+        if(value >= 0){
+            if(self.startDate == nil){
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "select_date_start".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+                return
+            }
             
-            self.vacDaysTxtField.text = String(stepper.value)
-            self.vacationRequest.P_DAYS = String(stepper.value)
+            self.vacDaysTxtField.text = String(value)
+            self.vacationRequest.P_DAYS = String(value)
             
-                self.endDate = self.startDate!.dateByAddingTimeInterval(60*60*24*stepper.value)
-                let dateString:NSString = Common.getDateString(self.endDate!, isHijri: true)
-                self.endDatePicker.text = dateString as String
-                self.vacationRequest.P_END_DATE = Common.getDateString(self.endDate!, isHijri: false) as String
-                self.endDateLabel.text = self.endDate!.descriptionWithLocale( NSLocale(localeIdentifier: "ar_EG"))
+            self.endDate = self.startDate!.dateByAddingTimeInterval(60*60*24*(value-1))
+            let dateString:NSString = Common.getDateString(self.endDate!, isHijri: true)
+            self.endDatePicker.text = dateString as String
+            self.vacationRequest.P_END_DATE = Common.getDateString(self.endDate!, isHijri: false) as String
+            self.endDateLabel.text = self.endDate!.descriptionWithLocale( NSLocale(localeIdentifier: "ar_EG"))
             
-        }
+
+    }
+        
     }
     override func viewWillAppear(animated: Bool) {
         if(self.selectedEmp != nil){
@@ -263,7 +354,13 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
                 
             }, origin: gesture.view)
         
-    let calendar:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)!
+        
+        let calendar:NSCalendar?
+    if #available(iOS 8.0, *) {
+        calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)!
+    } else {
+        calendar = NSCalendar(calendarIdentifier: NSIslamicCalendar)!
+    }
 
     actionSheetPicker.calendar = calendar;
     actionSheetPicker.locale = NSLocale(localeIdentifier: "ar_SA")
@@ -297,8 +394,14 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             }, cancelBlock: { (picker) -> Void in
                 
             }, origin: gesture.view)
-        
-        let calendar:NSCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)!
+        let calendar:NSCalendar?
+        if #available(iOS 8.0, *) {
+            calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)!
+        } else {
+            // Fallback on earlier versionsNSCalendarIdentifierGregorian
+            
+            calendar = NSCalendar(calendarIdentifier: NSIslamicCalendar)!
+        }
         
         actionSheetPicker.calendar = calendar;
         actionSheetPicker.locale = NSLocale(localeIdentifier: "ar_SA")

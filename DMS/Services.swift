@@ -135,13 +135,8 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 
                 let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
                 sessionManager.loginInfo = loginInfo
-                
-                
-                // login success
-                let containerViewController = ContainerViewController()
-                let modalStyle: UIModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-                containerViewController.modalTransitionStyle = modalStyle
-                viewController!.presentViewController(containerViewController, animated: true, completion: nil)
+                returnResultString = ""
+                self.getUserInfo(loginInfo.PUSERNAME)
                 
             }else{
                 let alertView:UIAlertView  = UIAlertView(title: nil, message: "login_invalid".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
@@ -172,12 +167,15 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
                 sessionManager.userInfo = userInfo
                 
-                viewController?.performSegueWithIdentifier("show_profile", sender: self)
+                // login success
+                let containerViewController = ContainerViewController()
+                let modalStyle: UIModalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
+                containerViewController.modalTransitionStyle = modalStyle
+                viewController!.presentViewController(containerViewController, animated: true, completion: nil)
                 
             }else{
                 let alertView:UIAlertView  = UIAlertView(title: nil, message: "try_again".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
                 alertView.show()
-            
             
             }
         }
@@ -358,8 +356,43 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
         }
         
         else if(self.methodName == Common.REQUEST_VACATION_SERVICE){
-        
-        
+//        [{\"P_USERNAME\":\"1016\",\"P_MSG\":\"الخدمة لم تطبق على شاغري المرتبتين الرابعة عشر والخامسة عشر\"}]
+            
+            let resArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
+            
+            let resDict:NSDictionary = resArr.objectAtIndex(0) as! NSDictionary
+            
+            
+            if((resDict.valueForKey("P_MSG") as? NSNull) == nil){
+                
+                if (resDict.valueForKey("P_MSG")!.isEqual("Done") ) {
+                    let alert:UIAlertView
+                    alert = UIAlertView(title: nil, message: "your_request_isdone".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
+                    
+                    CustomAlertViewDelegate.showAlertView(alert) { (alertView, buttonIndex) -> Void in
+                        if(alertView.buttonTitleAtIndex(buttonIndex) == "ok_dialog".localized){
+                            self.viewController!.dismissViewControllerAnimated(true, completion: nil)
+                        }
+                    }
+                
+                }
+            else if (!resDict.valueForKey("P_MSG")!.isEqual("Done") ) {
+                
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: resDict.valueForKey("P_MSG") as! String, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+                
+            }else{
+                let alert:UIAlertView
+                alert = UIAlertView(title: nil, message: "your_request_isrejected".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
+                
+                CustomAlertViewDelegate.showAlertView(alert) { (alertView, buttonIndex) -> Void in
+                    if(alertView.buttonTitleAtIndex(buttonIndex) == "ok_dialog".localized){
+                        self.viewController!.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                }
+                
+                }
+            }
         
         }
         

@@ -56,8 +56,12 @@ class NotificationsViewController: UITableViewController {
         self.mwTopRefreshControl =  self.refreshBar;
 //        self.mwBottomRefreshControl = self.refreshBar;
         
-        self.startRefreshControl()
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.startRefreshControl()
         
     }
     

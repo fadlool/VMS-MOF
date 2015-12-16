@@ -167,11 +167,13 @@ extension MainViewController: SidePanelViewControllerDelegate,UIAlertViewDelegat
        
         if(sideMenuItem.order == Common.MenuProfileOrder){
             
-            let sessionManager:SessionManager = SessionManager.sharedSessionManager()
-            let loginInfo:LoginInfo = sessionManager.loginInfo
+//            let sessionManager:SessionManager = SessionManager.sharedSessionManager()
+//            let loginInfo:LoginInfo = sessionManager.loginInfo
+//            
+//            let services:Services = Services(viewController: self)
+//            services.getUserInfo(loginInfo.PUSERNAME)
             
-            let services:Services = Services(viewController: self)
-            services.getUserInfo(loginInfo.PUSERNAME)
+            self.performSegueWithIdentifier("show_profile", sender: self)
         }
         else if(sideMenuItem.order ==  Common.MenuIdentityReqOrder){
             print("The letter A")

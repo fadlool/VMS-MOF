@@ -103,9 +103,15 @@ public class Common: NSObject {
 //        let gregMonthsArray:NSArray = arraysDictionary.objectForKey("array_greg_months")as! NSArray;
         
         if (isHijri && dateFormat.isEqual(DATE_FORMAT_1)) {
-            
+            let hijriCalendar: NSCalendar?
             // Then create an Islamic calendar
-            let hijriCalendar: NSCalendar? = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)
+            if #available(iOS 8.0, *) {
+               hijriCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)
+            } else {
+                // Fallback on earlier versions
+                hijriCalendar = NSCalendar(calendarIdentifier: NSIslamicCalendar)
+                
+            }
             
             // And grab those date components for the same date
             let hijriComponents: NSDateComponents  = hijriCalendar!.components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: cal)
@@ -115,9 +121,15 @@ public class Common: NSObject {
             
             
         } else if (isHijri && dateFormat.isEqual(DATE_FORMAT_2)) {
-            
+             let hijriCalendar: NSCalendar?
             // Then create an Islamic calendar
-            let hijriCalendar: NSCalendar? = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)
+            if #available(iOS 8.0, *) {
+                 hijriCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierIslamicUmmAlQura)
+            } else {
+                // Fallback on earlier versions
+                hijriCalendar = NSCalendar(calendarIdentifier: NSIslamicCalendar)
+                
+            }
             
             // And grab those date components for the same date
             let hijriComponents: NSDateComponents  = hijriCalendar!.components([NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: cal)
@@ -157,7 +169,7 @@ public class Common: NSObject {
                 dayStr = String(gregorianComponents.day)
             }
                         
-            dateString = "\(gregorianComponents.year) /"+monthStr+" / "+dayStr
+            dateString = "\(gregorianComponents.year)/"+monthStr+"/"+dayStr
             
         }
         
