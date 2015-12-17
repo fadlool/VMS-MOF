@@ -80,20 +80,18 @@ class NotificationDetailsViewController:UITableViewController {
     override func viewWillAppear(animated: Bool) {
         let selectedNotification:UserNotification = (self.notificationsViewController?.selectedNotificaion!)!
         
-        
-        let sessionManager:SessionManager = SessionManager.sharedSessionManager()
-        let loginInfo:LoginInfo = sessionManager.loginInfo
+//        let sessionManager:SessionManager = SessionManager.sharedSessionManager()
+//        let loginInfo:LoginInfo = sessionManager.loginInfo
         
         self.vacationTypeLabel.text = selectedNotification.ABSENCETYPENAME
         self.startDateLabel.text = selectedNotification.BEGINDATEHIJ
         self.endDateLabel.text = selectedNotification.ENDDATEHIJ as? String
         self.numberOfDaysLabel.text = String(selectedNotification.ABSENCEDAYS)
-        self.requestStatusLabel.text = selectedNotification.SUBJECT
-
+        self.requestStatusLabel.text = selectedNotification.STATUS
         
-        self.employeeNameLabel.text = loginInfo.VFULLNAME
-        self.employeeNumberLabel.text = loginInfo.PUSERNAME
-        self.workGroupLabel.text = loginInfo.VORGNAME
+        self.employeeNameLabel.text = selectedNotification.FROMUSERNAME
+        self.employeeNumberLabel.text = "غير متاح"
+        self.workGroupLabel.text = "غير متاح"
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

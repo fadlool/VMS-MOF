@@ -190,11 +190,11 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             notificationsViewController.loading = false;
             NSLog("Notifications retreive succeded:");
             
-            
             var notification:UserNotification
-            var notificationDict:NSDictionary
-            for (var i:Int = 0; i<notificationsJsonResArr.count; i++){
-                notificationDict = notificationsJsonResArr.objectAtIndex(i) as! NSDictionary
+//            var notificationDict:NSDictionary
+            for notificationDict in notificationsJsonResArr {
+//            for (var i:Int = 0; i<notificationsJsonResArr.count; i++){
+//                notificationDict = notificationsJsonResArr.objectAtIndex(i) as! NSDictionary
                 notification = UserNotification()
                 
                 if((notificationDict.valueForKey("SUBJECT") as? NSNull) == nil){
@@ -203,6 +203,11 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 
                 if((notificationDict.valueForKey("TO_USER_NAME") as? NSNull) == nil){
                     notification.TOUSERNAME = notificationDict.valueForKey("TO_USER_NAME") as! String
+                }
+                
+                if((notificationDict.valueForKey("FROM_USER_NAME") as? NSNull) == nil){
+                    notification.FROMUSERNAME
+                        = notificationDict.valueForKey("FROM_USER_NAME") as! String
                 }
                 
                 if((notificationDict.valueForKey("ABSENCE_TYPE_ID") as? NSNull) == nil){

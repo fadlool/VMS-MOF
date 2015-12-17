@@ -110,9 +110,9 @@ class NotificationsViewController: UITableViewController {
         let customColorView:UIView  = UIView()
         customColorView.backgroundColor =  UIColor(red: 0.91, green: 0.89, blue: 0.78, alpha: 1.0)
         cell.selectedBackgroundView =  customColorView
-        
-        if(indexPath.row < self.notificationsList.count){
-            let contentItem:UserNotification = self.notificationsList.objectAtIndex(indexPath.row) as! UserNotification
+        NSLog(String(indexPath.section.hashValue))
+        if(indexPath.section.hashValue < self.notificationsList.count){
+            let contentItem:UserNotification = self.notificationsList.objectAtIndex(indexPath.section.hashValue) as! UserNotification
             
             // Configure the cell...
             cell.notificationTitleLabel.text = contentItem.SUBJECT

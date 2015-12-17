@@ -23,7 +23,8 @@ class SelfVacationVC:UITableViewController{
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // vacation request clicked
-        if(indexPath.row == 0){
+        NSLog(String(indexPath.section.hashValue))
+        if(indexPath.section.hashValue == 0 ){
             self.performSegueWithIdentifier("show_req", sender: self)
         
         }
