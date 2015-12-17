@@ -199,9 +199,7 @@
                         <outlet property="topNavigationItem" destination="NzH-75-cwk" id="BU2-hY-wFn"/>
                         <segue destination="ch9-IJ-lTx" kind="show" identifier="show_profile" id="bGh-xk-Ddp"/>
                         <segue destination="NEj-gd-ODB" kind="show" identifier="showDetails" id="JnU-40-Txz"/>
-                        <segue destination="nU7-G4-Z2A" kind="popoverPresentation" identifier="showSelfVacation" popoverAnchorView="cp4-f1-bNH" id="H2A-ka-O58">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
+                        <segue destination="nU7-G4-Z2A" kind="presentation" identifier="showSelfVacation" id="H2A-ka-O58"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gCC-5J-5VP" sceneMemberID="firstResponder"/>
@@ -920,7 +918,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="الخدمة الذاتية للأجازات" id="tiG-bu-qoP"/>
                     <connections>
-                        <segue destination="rgq-eo-ex1" kind="showDetail" identifier="show_req" id="gh7-9i-zlf"/>
+                        <segue destination="rgq-eo-ex1" kind="presentation" identifier="show_req" id="gh7-9i-zlf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dfq-2W-298" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1692,6 +1690,7 @@
         <scene sceneID="WYe-PX-1Uj">
             <objects>
                 <navigationController id="nU7-G4-Z2A" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="nM9-5X-d5d"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bCK-MJ-u5Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
