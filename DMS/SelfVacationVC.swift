@@ -27,6 +27,10 @@ class SelfVacationVC:UITableViewController{
         if(indexPath.section.hashValue == 0 ){
             self.performSegueWithIdentifier("show_req", sender: self)
         
+        }else{
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
         }
     }
 }

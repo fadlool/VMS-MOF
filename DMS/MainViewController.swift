@@ -27,21 +27,28 @@ class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsVi
     var notifisViewControllerDelegate: NotificationsViewController?
     
     
-    func tabBar(tabBar: UITabBar!, didSelectItem item: UITabBarItem!) {
-        var searchEngineURLString: NSString! = "";
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+
+        let x = item.tag
         
-        switch item.tag  {
+        switch x {
         case 0:
-            searchEngineURLString = "https://www.bing.com"
+            
             break
         case 1:
-            searchEngineURLString = "https://www.duckduckgo.com"
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
             break
         case 2:
-            searchEngineURLString = "https://www.google.com"
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
             break
         default:
-            searchEngineURLString = "https://www.bing.com"
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
             break
         }
     }
@@ -49,6 +56,7 @@ class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsVi
     override func viewDidLoad() {
         
         self.tabBar.selectedItem = tabBar.items![0] as UITabBarItem;
+        self.tabBar.delegate = self
         
         if(NSUserDefaults.standardUserDefaults().objectForKey(Common.UserLanguage)!.integerValue == Language.Arabic.rawValue){
             
@@ -166,17 +174,7 @@ extension MainViewController: SidePanelViewControllerDelegate,UIAlertViewDelegat
     func sideMenuItemSelected(sideMenuItem: SideMenuItem) {
        
         if(sideMenuItem.order == Common.MenuProfileOrder){
-            
-//            let sessionManager:SessionManager = SessionManager.sharedSessionManager()
-//            let loginInfo:LoginInfo = sessionManager.loginInfo
-//            
-//            let services:Services = Services(viewController: self)
-//            services.getUserInfo(loginInfo.PUSERNAME)
-            
             self.performSegueWithIdentifier("show_profile", sender: self)
-        }
-        else if(sideMenuItem.order ==  Common.MenuIdentityReqOrder){
-            print("The letter A")
             
         }else if sideMenuItem.order == Common.MenuLogoutOrder{
             
@@ -193,6 +191,10 @@ extension MainViewController: SidePanelViewControllerDelegate,UIAlertViewDelegat
         }else if sideMenuItem.order == Common.MenuSelfVacationOrder{
             self.performSegueWithIdentifier("showSelfVacation", sender: self)
             
+        }else{
+            
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
         }
         
         delegate?.collapseSidePanels?()

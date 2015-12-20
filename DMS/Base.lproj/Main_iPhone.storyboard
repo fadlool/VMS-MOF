@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1016" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
                                 <rect key="frame" x="87" y="464" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0yX-K2-I7f"/>
@@ -34,7 +34,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xyz4539" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
                                 <rect key="frame" x="87" y="502" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1bt-4f-OFy"/>
@@ -166,9 +166,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem title="التبليغات" image="VacationIcon" id="fT8-ZL-pJC"/>
-                                    <tabBarItem title="طلب إحالة كشف طبي" image="MenuMedicalReq" id="2py-44-hy5"/>
-                                    <tabBarItem title="طلب انتداب" image="MenuDelegateReq" id="vZq-Lg-KZM"/>
-                                    <tabBarItem title="خطاب تعريف" image="MenuReq" id="kIk-hF-vG1"/>
+                                    <tabBarItem tag="1" title="طلب إحالة كشف طبي" image="MenuMedicalReq" id="2py-44-hy5"/>
+                                    <tabBarItem tag="2" title="طلب انتداب" image="MenuDelegateReq" id="vZq-Lg-KZM"/>
+                                    <tabBarItem tag="3" title="خطاب تعريف" image="MenuReq" id="kIk-hF-vG1"/>
                                 </items>
                             </tabBar>
                         </subviews>
@@ -316,7 +316,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8B-Q8-zci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="1223"/>
+            <point key="canvasLocation" x="1129" y="1223"/>
         </scene>
         <!--Notification Details Table View Controller-->
         <scene sceneID="1qW-fw-34Q">
@@ -776,7 +776,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEp-Y8-fQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="2207"/>
+            <point key="canvasLocation" x="1129" y="2207"/>
         </scene>
         <!--الخدمة الذاتية للأجازات-->
         <scene sceneID="1YO-Tg-W7u">
@@ -2336,7 +2336,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIt-N5-L8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="49" y="2199"/>
+            <point key="canvasLocation" x="11" y="2199"/>
         </scene>
         <!--Filte Table View Controller-->
         <scene sceneID="XFK-iy-G4q">

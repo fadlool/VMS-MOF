@@ -268,7 +268,14 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             let dateString:NSString = Common.getDateString(self.endDate!, isHijri: true)
             self.endDatePicker.text = dateString as String
             self.vacationRequest.P_END_DATE = Common.getDateString(self.endDate!, isHijri: false) as String
-            self.endDateLabel.text = self.endDate!.descriptionWithLocale( NSLocale(localeIdentifier: "ar_EG"))
+            
+            let  dateFormatter:NSDateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            dateFormatter.locale = NSLocale(localeIdentifier: "ar_EG")
+            NSLog(dateFormatter.stringFromDate(self.endDate!))
+            let str:String = dateFormatter.stringFromDate(self.endDate!)
+            
+            self.endDateLabel.text = str
             
 
     }
@@ -343,12 +350,15 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             let comps:NSDateComponents = (gregorianCal?.components(flags, fromDate: selectedDate as! NSDate))!
             
             self.startDate = NSCalendar.currentCalendar().dateFromComponents(comps)!
-  
             self.startDatePicker.text = Common.getDateString(self.startDate!, isHijri: true) as String
-            
             self.vacationRequest.P_ST_DATE = Common.getDateString(self.startDate!, isHijri: false) as String
 
-            let str:String = self.startDate!.descriptionWithLocale( NSLocale(localeIdentifier: "ar_EG"))
+            let  dateFormatter:NSDateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            dateFormatter.locale = NSLocale(localeIdentifier: "ar_EG")
+            NSLog(dateFormatter.stringFromDate(self.startDate!))
+            let str:String = dateFormatter.stringFromDate(self.startDate!)
+            
             self.startDateLabel.text = str
             }, cancelBlock: { (picker) -> Void in
                 
@@ -385,11 +395,15 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             let comps:NSDateComponents = (gregorianCal?.components(flags, fromDate: selectedDate as! NSDate))!
             
             self.endDate = NSCalendar.currentCalendar().dateFromComponents(comps)!
-            
             self.vacationRequest.P_END_DATE = Common.getDateString(self.endDate!, isHijri: false) as String
-            
             self.endDatePicker.text = Common.getDateString(self.endDate!, isHijri: true) as String
-            let str:String = self.endDate!.descriptionWithLocale( NSLocale(localeIdentifier: "ar_EG"))
+            
+            let  dateFormatter:NSDateFormatter = NSDateFormatter()
+            dateFormatter.dateStyle = NSDateFormatterStyle.FullStyle
+            dateFormatter.locale = NSLocale(localeIdentifier: "ar_EG")
+            NSLog(dateFormatter.stringFromDate(self.endDate!))
+            let str:String = dateFormatter.stringFromDate(self.endDate!)
+            
             self.endDateLabel.text = str
             }, cancelBlock: { (picker) -> Void in
                 

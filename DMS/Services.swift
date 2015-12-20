@@ -364,9 +364,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
 //        [{\"P_USERNAME\":\"1016\",\"P_MSG\":\"الخدمة لم تطبق على شاغري المرتبتين الرابعة عشر والخامسة عشر\"}]
             
             let resArr:NSArray = Helper.getJSONDictObjFromString(returnResultString) as! NSArray
-            
             let resDict:NSDictionary = resArr.objectAtIndex(0) as! NSDictionary
-            
             
             if((resDict.valueForKey("P_MSG") as? NSNull) == nil){
                 
