@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1016" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
                                 <rect key="frame" x="87" y="464" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0yX-K2-I7f"/>
@@ -34,7 +34,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xyz4539" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
                                 <rect key="frame" x="87" y="502" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1bt-4f-OFy"/>
@@ -2309,7 +2309,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="B9v-P7-Rj5" secondAttribute="trailing" constant="-8" id="P2O-uy-w1V"/>
+                                                <constraint firstAttribute="trailing" secondItem="B9v-P7-Rj5" secondAttribute="trailing" constant="4" id="P2O-uy-w1V"/>
                                                 <constraint firstItem="B9v-P7-Rj5" firstAttribute="leading" secondItem="6Pi-qB-whH" secondAttribute="leading" constant="-8" id="fA5-bJ-Rur"/>
                                                 <constraint firstItem="B9v-P7-Rj5" firstAttribute="centerY" secondItem="6Pi-qB-whH" secondAttribute="centerY" id="ugb-8C-e2G"/>
                                             </constraints>
@@ -2332,7 +2332,7 @@
                                             <constraints>
                                                 <constraint firstItem="Yrf-Et-KZa" firstAttribute="leading" secondItem="pOP-tb-d9d" secondAttribute="leading" constant="-8" id="91E-Aa-C4A"/>
                                                 <constraint firstItem="Yrf-Et-KZa" firstAttribute="centerY" secondItem="pOP-tb-d9d" secondAttribute="centerY" id="H8u-eQ-c9r"/>
-                                                <constraint firstAttribute="trailing" secondItem="Yrf-Et-KZa" secondAttribute="trailing" constant="-8" id="Jrp-eq-3Fd"/>
+                                                <constraint firstAttribute="trailing" secondItem="Yrf-Et-KZa" secondAttribute="trailing" constant="4" id="Jrp-eq-3Fd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2357,7 +2357,7 @@
                                             <constraints>
                                                 <constraint firstItem="ID7-e2-BkJ" firstAttribute="centerY" secondItem="KLz-06-cPj" secondAttribute="centerY" id="G31-Hu-9Ig"/>
                                                 <constraint firstItem="ID7-e2-BkJ" firstAttribute="leading" secondItem="KLz-06-cPj" secondAttribute="leading" constant="-8" id="Osl-qd-jKZ"/>
-                                                <constraint firstAttribute="trailing" secondItem="ID7-e2-BkJ" secondAttribute="trailing" constant="-8" id="wdX-ja-Ibf"/>
+                                                <constraint firstAttribute="trailing" secondItem="ID7-e2-BkJ" secondAttribute="trailing" constant="4" id="wdX-ja-Ibf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -2377,7 +2377,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="NLm-Z2-fcY" firstAttribute="leading" secondItem="5g5-j9-G0m" secondAttribute="leading" constant="-8" id="7uU-re-FOE"/>
-                                                <constraint firstAttribute="trailing" secondItem="NLm-Z2-fcY" secondAttribute="trailing" constant="-8" id="GgV-rh-fYA"/>
+                                                <constraint firstAttribute="trailing" secondItem="NLm-Z2-fcY" secondAttribute="trailing" constant="4" id="GgV-rh-fYA"/>
                                                 <constraint firstItem="NLm-Z2-fcY" firstAttribute="centerY" secondItem="5g5-j9-G0m" secondAttribute="centerY" id="fl5-r2-Z3I"/>
                                             </constraints>
                                         </tableViewCellContentView>
