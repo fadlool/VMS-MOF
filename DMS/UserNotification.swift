@@ -27,37 +27,37 @@ class UserNotification: NSObject {
     var STATUS:String = ""
     //"BEGIN_DATE")
    
-    var BEGINDATE:String = ""
+    var BEGINDATE:String = "غير متاح"
     //"BEGIN_DATE_HIJ")
    
-    var BEGINDATEHIJ:String = ""
+    var BEGINDATEHIJ:String = "غير متاح"
     //"TO_USER_ID")
    
-    var TOUSERID:String = ""
+    var TOUSERID:String = "غير متاح"
     //"FROM_USER_NAME")
    
-    var FROMUSERNAME:String = ""
+    var FROMUSERNAME:String = "غير متاح"
     //"TO_USER_NAME")
    
-    var TOUSERNAME:String = ""
+    var TOUSERNAME:String = "غير متاح"
     //"SUBJECT")
    
-    var SUBJECT:String = ""
+    var SUBJECT:String = "غير متاح"
     //"ABSENCE_TYPE_ID")
    
-    var ABSENCETYPEID:String = ""
+    var ABSENCETYPEID:String = "غير متاح"
     //"ABSENCE_TYPE_NAME")
    
-    var ABSENCETYPENAME:String = ""
+    var ABSENCETYPENAME:String = "غير متاح"
     //"START_DATE")
    
-    var STARTDATE:String = ""
+    var STARTDATE:String = "غير متاح"
     //"START_DATE_HIJ")
    
     var STARTDATEHIJ:NSObject?
     //"END_DATE")
    
-    var ENDDATE:String = ""
+    var ENDDATE:String = "غير متاح"
     //"END_DATE_HIJ")
    
     var ENDDATEHIJ:NSObject?

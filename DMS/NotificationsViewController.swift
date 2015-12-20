@@ -116,7 +116,11 @@ class NotificationsViewController: UITableViewController {
             
             // Configure the cell...
             cell.notificationTitleLabel.text = contentItem.SUBJECT
-            cell.dateLabel.text = contentItem.BEGINDATEHIJ
+            
+            cell.dateLabel.text = contentItem.STARTDATE
+           
+            cell.endDateLabe.text = contentItem.ENDDATE
+            
             cell.backgroundColor = UIColor.whiteColor()
             cell.layer.borderColor = UIColor.lightTextColor().CGColor
             cell.layer.borderWidth = 1
@@ -134,7 +138,7 @@ class NotificationsViewController: UITableViewController {
         
         self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        self.selectedNotificaion = self.notificationsList.objectAtIndex(indexPath.row) as? UserNotification
+        self.selectedNotificaion = self.notificationsList.objectAtIndex(indexPath.section.hashValue) as? UserNotification
         
     }
     

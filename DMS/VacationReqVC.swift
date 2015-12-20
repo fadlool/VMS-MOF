@@ -197,7 +197,7 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
         
         let numberToolbar:UIToolbar = UIToolbar(frame: CGRectMake(0, 0, screenWidth, 50))
         
-        numberToolbar.barStyle = UIBarStyle.BlackTranslucent;
+        numberToolbar.barStyle = UIBarStyle.Default
         numberToolbar.items = [UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: "cancelNumberPad"),UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
         UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: "doneWithNumberPad")]
         

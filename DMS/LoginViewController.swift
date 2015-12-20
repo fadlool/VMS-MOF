@@ -169,6 +169,14 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     func login(){
+        if (self.usernameTxtField.isFirstResponder()) {
+            self.usernameTxtField.resignFirstResponder()
+        }
+        
+        if (self.passwordTxtField.isFirstResponder()) {
+            self.passwordTxtField.resignFirstResponder()
+        }
+        
         let services:Services = Services(viewController: self)
         
         if(self.usernameTxtField.text! == ""){
@@ -187,6 +195,11 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         
         services.login(self.usernameTxtField.text!,password:self.passwordTxtField.text!)
         
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.usernameTxtField.text = ""
+        self.passwordTxtField.text = ""
     }
 }
 

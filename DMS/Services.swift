@@ -173,6 +173,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 containerViewController.modalTransitionStyle = modalStyle
                 viewController!.presentViewController(containerViewController, animated: true, completion: nil)
                 
+                
             }else{
                 let alertView:UIAlertView  = UIAlertView(title: nil, message: "try_again".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
                 alertView.show()
@@ -233,6 +234,28 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 
                 if((notificationDict.valueForKey("END_DATE_HIJ") as? NSNull) == nil){
                     notification.ENDDATEHIJ = notificationDict.valueForKey("END_DATE_HIJ") as! String
+                }
+                
+                if((notificationDict.valueForKey("START_DATE") as? NSNull) == nil){
+                    let str:String = notificationDict.valueForKey("START_DATE") as! String
+                    
+                    let range = str.rangeOfString("T")!
+                    let substring: String = str.substringToIndex(range.startIndex)
+                    
+                    NSLog(substring)
+                    
+                    notification.STARTDATE = substring
+                }
+                
+                if((notificationDict.valueForKey("END_DATE") as? NSNull) == nil){
+                    let str:String = notificationDict.valueForKey("END_DATE") as! String
+                    
+                    let range = str.rangeOfString("T")!
+                    let substring: String = str.substringToIndex(range.startIndex)
+
+                    NSLog(substring)
+                    
+                    notification.ENDDATE = substring
                 }
                 
                 if((notificationDict.valueForKey("P_USERNAME") as? NSNull) == nil){

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class NotificationDetailsViewController:UITableViewController {
+    @IBOutlet weak var beginDateLabel: UILabel!
     
     @IBOutlet weak var employeeNameLabel: UILabel!
     @IBOutlet weak var employeeNumberLabel: UILabel!
@@ -84,11 +85,11 @@ class NotificationDetailsViewController:UITableViewController {
 //        let loginInfo:LoginInfo = sessionManager.loginInfo
         
         self.vacationTypeLabel.text = selectedNotification.ABSENCETYPENAME
-        self.startDateLabel.text = selectedNotification.BEGINDATEHIJ
-        self.endDateLabel.text = selectedNotification.ENDDATEHIJ as? String
+        self.startDateLabel.text = selectedNotification.STARTDATE
+        self.endDateLabel.text = selectedNotification.ENDDATE
         self.numberOfDaysLabel.text = String(selectedNotification.ABSENCEDAYS)
         self.requestStatusLabel.text = selectedNotification.STATUS
-        
+        self.beginDateLabel.text = selectedNotification.BEGINDATEHIJ
         self.employeeNameLabel.text = selectedNotification.FROMUSERNAME
         self.employeeNumberLabel.text = "غير متاح"
         self.workGroupLabel.text = "غير متاح"
