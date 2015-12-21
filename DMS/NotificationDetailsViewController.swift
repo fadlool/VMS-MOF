@@ -12,6 +12,7 @@ import UIKit
 class NotificationDetailsViewController:UITableViewController {
     @IBOutlet weak var beginDateLabel: UILabel!
     
+    @IBOutlet weak var toUserLabel: UILabel!
     @IBOutlet weak var employeeNameLabel: UILabel!
     @IBOutlet weak var employeeNumberLabel: UILabel!
     @IBOutlet weak var workGroupLabel: UILabel!
@@ -93,6 +94,7 @@ class NotificationDetailsViewController:UITableViewController {
         self.employeeNameLabel.text = selectedNotification.FROMUSERNAME
         self.employeeNumberLabel.text = "غير متاح"
         self.workGroupLabel.text = "غير متاح"
+        self.toUserLabel.text = selectedNotification.TOUSERNAME
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
