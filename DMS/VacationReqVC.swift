@@ -135,7 +135,7 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
     @IBAction func noOfDaysEditingChnaged(sender: UITextField) {
         if(sender.text! != ""){
         
-            let value:Double = Double(sender.text!)!
+            let value:Int = Int(sender.text!)!
         
             self.updateEndDate(value)
             
@@ -223,7 +223,7 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
     func doneWithNumberPad(){
         if(self.vacDaysTxtField.text! != ""){
             
-            let value:Double = Double(self.vacDaysTxtField.text!)!
+            let value:Int = Int(self.vacDaysTxtField.text!)!
             
             self.updateEndDate(value)
             
@@ -249,10 +249,10 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
     
     @IBAction func stepperValueChanged(sender: AnyObject) {
         let stepper:UIStepper = sender as! UIStepper
-        self.updateEndDate(stepper.value)
+        self.updateEndDate(Int(stepper.value))
     }
     
-    func updateEndDate(value:Double){
+    func updateEndDate(value:Int){
     
         if(value >= 0){
             if(self.startDate == nil){
@@ -264,7 +264,7 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
             self.vacDaysTxtField.text = String(value)
             self.vacationRequest.P_DAYS = String(value)
             
-            self.endDate = self.startDate!.dateByAddingTimeInterval(60*60*24*(value-1))
+            self.endDate = self.startDate!.dateByAddingTimeInterval(60*60*24*(Double(value)-1))
             let dateString:NSString = Common.getDateString(self.endDate!, isHijri: true)
             self.endDatePicker.text = dateString as String
             self.vacationRequest.P_END_DATE = Common.getDateString(self.endDate!, isHijri: false) as String
