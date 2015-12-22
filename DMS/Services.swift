@@ -192,10 +192,8 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             NSLog("Notifications retreive succeded:");
             
             var notification:UserNotification
-//            var notificationDict:NSDictionary
             for notificationDict in notificationsJsonResArr {
-//            for (var i:Int = 0; i<notificationsJsonResArr.count; i++){
-//                notificationDict = notificationsJsonResArr.objectAtIndex(i) as! NSDictionary
+
                 notification = UserNotification()
                 
                 if((notificationDict.valueForKey("SUBJECT") as? NSNull) == nil){
