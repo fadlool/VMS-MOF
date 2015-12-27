@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1029" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
                                 <rect key="frame" x="87" y="464" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0yX-K2-I7f"/>
@@ -34,7 +34,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
                                 <rect key="frame" x="87" y="502" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1bt-4f-OFy"/>
@@ -191,6 +191,7 @@
                     <navigationItem key="navigationItem" title="الطلبات التي لم يتم الرد عليها" id="NzH-75-cwk"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="noItemsLabel" destination="Qko-H9-VmY" id="ENX-T1-MLC"/>
                         <outlet property="noItemsView" destination="KWf-5s-8DY" id="onD-0M-N1P"/>
                         <outlet property="tabBar" destination="WaO-yl-2r3" id="cga-jl-tFs"/>
                         <outlet property="topNavigationItem" destination="NzH-75-cwk" id="BU2-hY-wFn"/>

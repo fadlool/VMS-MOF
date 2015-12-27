@@ -19,6 +19,7 @@ protocol MainViewControllerDelegate {
 
 class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsViewControllerDelegate,UITabBarDelegate {
     
+    @IBOutlet weak var noItemsLabel: UILabel!
     @IBOutlet weak var tabBar: UITabBar!
     
     @IBOutlet weak var noItemsView: UIView!
@@ -34,21 +35,38 @@ class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsVi
         switch x {
         case 0:
             
+            self.noItemsLabel.hidden = true
+            self.noItemsView.hidden = true
+            self.topNavigationItem.title = "open_requests_title".localized
+            notifisViewControllerDelegate?.startRefreshControl()
             break
         case 1:
+            self.noItemsLabel.hidden = false
+            self.noItemsView.hidden = false
+            self.noItemsLabel.text = "not_activated".localized
             
-            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
-            alertView.show()
+            self.topNavigationItem.title = "medic_req".localized
+//            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+//            alertView.show()
             break
         case 2:
             
-            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
-            alertView.show()
+            self.noItemsLabel.hidden = false
+            self.noItemsView.hidden = false
+            self.noItemsLabel.text = "not_activated".localized
+            
+            self.topNavigationItem.title = "delegate_req".localized
+//            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+//            alertView.show()
             break
         default:
             
-            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
-            alertView.show()
+            self.noItemsLabel.hidden = false
+            self.noItemsView.hidden = false
+            self.noItemsLabel.text = "not_activated".localized
+            self.topNavigationItem.title = "request".localized
+//            let alertView:UIAlertView  = UIAlertView(title: nil, message: "not_activated".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+//            alertView.show()
             break
         }
     }
@@ -77,6 +95,7 @@ class MainViewController: UIViewController,UIActionSheetDelegate,NotificationsVi
     func didFinishLoading() {
         if(self.notifisViewControllerDelegate?.notificationsList != nil && self.notifisViewControllerDelegate?.notificationsList.count == 0){
             self.noItemsView.hidden = false
+            self.noItemsLabel.text = "no_requests_found".localized
         }else{
             self.noItemsView.hidden = true
         
