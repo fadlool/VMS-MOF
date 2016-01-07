@@ -216,6 +216,6 @@ extension MainViewController: SidePanelViewControllerDelegate,UIAlertViewDelegat
             alertView.show()
         }
         
-        delegate?.collapseSidePanels?()
+//        delegate?.collapseSidePanels?()
     }
 }

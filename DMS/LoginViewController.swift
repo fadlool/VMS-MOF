@@ -19,6 +19,9 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var loginBottomConstraint: NSLayoutConstraint!
     var loginBottomConstraintValue:CGFloat = 0
     
+    var internetReachable:Reachability?
+    var hostReachable:Reachability?
+    
     var kbShown:Bool = false
 
     override func viewDidLoad() {
@@ -75,6 +78,33 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         }
     }
     
+    
+    func checkNetworkStatus(notice: NSNotification){
+        // called after network status changes
+        let internetStatus:NetworkStatus = (self.internetReachable?.currentReachabilityStatus())!
+        switch internetStatus{
+        case NotReachable:
+//                NSLog("The internet is down.");
+//                self.internetActive = NO;
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: "internet_error".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                alertView.show()
+                break
+            
+        case ReachableViaWiFi:
+                NSLog("The internet is working via WIFI.");
+//                self.internetActive = YES;
+                break
+        case ReachableViaWWAN:
+                NSLog("The internet is working via WWAN.");
+//                self.internetActive = YES;
+                break
+        default:
+            break
+
+            
+        }
+    
+    }
     @IBAction func loginBtnTapped(sender: AnyObject) {
         self.login()
        
@@ -96,9 +126,24 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     override func viewWillAppear(animated: Bool) {
        
         self.observeKeyboard()
+        
+
+        // check for internet connection
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkNetworkStatus:", name: kReachabilityChangedNotification, object:nil)
+
+        self.internetReachable = Reachability.reachabilityForInternetConnection()
+        self.internetReachable!.startNotifier()
+        
+        
     }
     
     override func awakeFromNib() {
@@ -193,8 +238,38 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             return
         }
         
-        services.login(self.usernameTxtField.text!,password:self.passwordTxtField.text!)
-        
+        let internetStatus:NetworkStatus = (self.internetReachable?.currentReachabilityStatus())!
+        switch internetStatus{
+        case NotReachable:
+            //                NSLog("The internet is down.");
+            //                self.internetActive = NO;
+            let alertView:UIAlertView  = UIAlertView(title: nil, message: "internet_error".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
+            break
+            
+        case ReachableViaWiFi:
+            NSLog("The internet is working via WIFI.");
+            
+            services.login(self.usernameTxtField.text!,password:self.passwordTxtField.text!)
+            
+            //                self.internetActive = YES;
+            break
+        case ReachableViaWWAN:
+            NSLog("The internet is working via WWAN.");
+            
+            services.login(self.usernameTxtField.text!,password:self.passwordTxtField.text!)
+            
+            //                self.internetActive = YES;
+            break
+        default:
+            
+            services.login(self.usernameTxtField.text!,password:self.passwordTxtField.text!)
+            
+            break
+            
+            
+        }
+ 
     }
     
     override func viewDidDisappear(animated: Bool) {
