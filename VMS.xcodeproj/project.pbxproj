@@ -63,6 +63,8 @@
 		12E2768A1C05B6D700DA23E9 /* DMSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E276891C05B6D700DA23E9 /* DMSUITests.swift */; };
 		12E2769C1C05E3FF00DA23E9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E2769B1C05E3FF00DA23E9 /* Main_iPad.storyboard */; };
 		12E2769F1C05E94600DA23E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E2769D1C05E94600DA23E9 /* LaunchScreen.storyboard */; };
+		12EAF7591C382639001ABEFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EAF7581C382639001ABEFD /* SystemConfiguration.framework */; };
+		12EAF75C1C38268A001ABEFD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EAF75B1C38268A001ABEFD /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,9 @@
 		12E2769B1C05E3FF00DA23E9 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		12E2769E1C05E94600DA23E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12E276A81C05F47400DA23E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		12EAF7581C382639001ABEFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		12EAF75A1C38268A001ABEFD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		12EAF75B1C38268A001ABEFD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +183,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12EAF7591C382639001ABEFD /* SystemConfiguration.framework in Frameworks */,
 				127C79C71C12260A00757D12 /* CoreFoundation.framework in Frameworks */,
 				127C79C51C1225CB00757D12 /* Security.framework in Frameworks */,
 				127C79C31C12259000757D12 /* Foundation.framework in Frameworks */,
@@ -286,6 +292,8 @@
 		12B82C4A1C0DE85400300F3E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				12EAF75A1C38268A001ABEFD /* Reachability.h */,
+				12EAF75B1C38268A001ABEFD /* Reachability.m */,
 				126E9A011C15E86300293B77 /* SessionManager.h */,
 				126E9A061C15E87000293B77 /* SessionManager.m */,
 				12B82C4C1C0DE88D00300F3E /* Helper.m */,
@@ -304,6 +312,7 @@
 		12B82C591C0DED2F00300F3E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				12EAF7581C382639001ABEFD /* SystemConfiguration.framework */,
 				127C79C61C12260A00757D12 /* CoreFoundation.framework */,
 				127C79C41C1225CB00757D12 /* Security.framework */,
 				127C79C21C12259000757D12 /* Foundation.framework */,
@@ -548,6 +557,7 @@
 				127C79D61C12269400757D12 /* AFURLConnectionOperation.m in Sources */,
 				12C81C761C1C44D300350B4E /* VacationRequest.swift in Sources */,
 				127C79D51C12269400757D12 /* AFSecurityPolicy.m in Sources */,
+				12EAF75C1C38268A001ABEFD /* Reachability.m in Sources */,
 				127BCB6A1C161CB100D63B29 /* NotificationsViewController.swift in Sources */,
 				126E9A041C15E86300293B77 /* UserInfo.m in Sources */,
 				129833501C1956240069A3F5 /* DropDownItem.swift in Sources */,

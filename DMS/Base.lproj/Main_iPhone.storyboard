@@ -340,7 +340,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b8B-Q8-zci" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="1223"/>
+            <point key="canvasLocation" x="1139" y="1259"/>
         </scene>
         <!--Notification Details Table View Controller-->
         <scene sceneID="1qW-fw-34Q">
@@ -894,7 +894,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEp-Y8-fQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="1959"/>
+            <point key="canvasLocation" x="1169" y="2213"/>
         </scene>
         <!--الخدمة الذاتية للأجازات-->
         <scene sceneID="1YO-Tg-W7u">

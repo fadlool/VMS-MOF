@@ -71,36 +71,8 @@ public class Common: NSObject {
         
         let dateFormat = DATE_FORMAT_2
         
-        var language = NSUserDefaults.standardUserDefaults().objectForKey(UserLanguage)as! Int
-        
-        // Create a Gregorian Calendar
-        let gregorianCalendar: NSCalendar? = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)
         // Set up components of a Gregorian date
         let  gregorianComponents:NSDateComponents = NSCalendar.currentCalendar().components( [NSCalendarUnit.Day, NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: cal)
-        
-        //        NSLog(@"[In Gregorian calendar ->] Day: %ld, Month: %ld, Year:%ld",
-        //        (long)[gregorianComponents day],
-        //        (long)[gregorianComponents month],
-        //        (long)[gregorianComponents year]);
-        
-        
-        //        gregorianComponents.day = [gregorianComponents day];
-        //        gregorianComponents.month = [gregorianComponents month];
-        //        gregorianComponents.year = [gregorianComponents year];
-        
-        // Create the date
-        var date: NSDate? = gregorianCalendar?.dateFromComponents(gregorianComponents)
-        
-        //        NSLog(@"[In Hijri calendar ->] Day: %ld, Month: %ld, Year:%ld",
-        //        (long)[hijriComponents day],
-        //        (long)[hijriComponents month],
-        //        (long)[hijriComponents year]);
-        
-        
-//        let crsServices:CRSServices = CRSServices()
-//        let arraysDictionary:NSDictionary  = crsServices.dictionaryOfArrays()
-//        let hijriMonthsArray:NSArray = arraysDictionary.objectForKey("array_hijri_months") as! NSArray;
-//        let gregMonthsArray:NSArray = arraysDictionary.objectForKey("array_greg_months")as! NSArray;
         
         if (isHijri && dateFormat.isEqual(DATE_FORMAT_1)) {
             let hijriCalendar: NSCalendar?

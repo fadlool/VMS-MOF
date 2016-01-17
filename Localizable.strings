@@ -108,4 +108,5 @@
 "enter_alternate_emp"="فضلا ادخل الموظف البديل";
 "confirm_msg" = "رسالة تأكيد";
 "not_activated" = "لم تفعل بعد.";
+"internet_error" = "لا يوجد شبكة";
 
