@@ -14,5 +14,5 @@ class NotificationCell: UITableViewCell {
     @IBOutlet weak var notificationTitleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    @IBOutlet weak var endDateLabe: UILabel!
+//    @IBOutlet weak var endDateLabe: UILabel!
 }

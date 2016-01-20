@@ -119,7 +119,7 @@ class NotificationsViewController: UITableViewController {
             
             cell.dateLabel.text = contentItem.STARTDATE
            
-            cell.endDateLabe.text = contentItem.ENDDATE
+//            cell.endDateLabe.text = contentItem.ENDDATE
             
             cell.backgroundColor = UIColor.whiteColor()
             cell.layer.borderColor = UIColor.lightTextColor().CGColor

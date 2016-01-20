@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="900189" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
                                 <rect key="frame" x="87" y="464" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0yX-K2-I7f"/>
@@ -34,7 +34,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
                                 <rect key="frame" x="87" y="502" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1bt-4f-OFy"/>
@@ -252,50 +252,27 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="MiniCalIcon" translatesAutoresizingMaskIntoConstraints="NO" id="XxX-Az-hhU">
-                                            <rect key="frame" x="299" y="50" width="54" height="51"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="HIZ-7l-b1u"/>
-                                                <constraint firstAttribute="width" constant="25" id="JbT-r5-3k0"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcm-rj-eoo">
-                                            <rect key="frame" x="151" y="65" width="145" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="t8A-vc-Z9R"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="3mH-n1-dWj" firstAttribute="top" secondItem="Esa-rV-Acs" secondAttribute="top" constant="15" id="3lC-h2-f2N"/>
-                                        <constraint firstItem="d3K-Mj-N6p" firstAttribute="leading" secondItem="XxX-Az-hhU" secondAttribute="trailing" constant="31" id="7NQ-1N-adz"/>
                                         <constraint firstAttribute="trailing" secondItem="ZiS-rN-KcL" secondAttribute="trailing" constant="8" id="CQ6-kc-UQ0"/>
                                         <constraint firstItem="3mH-n1-dWj" firstAttribute="centerY" secondItem="pLh-aZ-q3B" secondAttribute="centerY" constant="13" id="EXB-Zq-Axf"/>
                                         <constraint firstItem="ZiS-rN-KcL" firstAttribute="top" secondItem="pLh-aZ-q3B" secondAttribute="bottom" constant="7" id="Gh7-V1-3Nm"/>
-                                        <constraint firstItem="vcm-rj-eoo" firstAttribute="centerY" secondItem="XxX-Az-hhU" secondAttribute="centerY" id="Kne-Za-4fo"/>
                                         <constraint firstItem="3mH-n1-dWj" firstAttribute="leading" secondItem="Esa-rV-Acs" secondAttribute="leading" constant="43" id="NAZ-V3-7Lb"/>
                                         <constraint firstAttribute="trailing" secondItem="pLh-aZ-q3B" secondAttribute="trailing" constant="6" id="cmu-cW-zRO"/>
                                         <constraint firstItem="ZiS-rN-KcL" firstAttribute="leading" secondItem="d3K-Mj-N6p" secondAttribute="trailing" constant="3" id="l8d-93-b3n"/>
-                                        <constraint firstItem="XxX-Az-hhU" firstAttribute="leading" secondItem="vcm-rj-eoo" secondAttribute="trailing" constant="3" id="o7a-Ua-Jyn"/>
                                         <constraint firstItem="d3K-Mj-N6p" firstAttribute="centerY" secondItem="ZiS-rN-KcL" secondAttribute="centerY" id="srS-3I-MTz"/>
-                                        <constraint firstItem="XxX-Az-hhU" firstAttribute="top" secondItem="pLh-aZ-q3B" secondAttribute="bottom" constant="7" id="uOs-LZ-pM0"/>
-                                        <constraint firstItem="XxX-Az-hhU" firstAttribute="top" secondItem="3mH-n1-dWj" secondAttribute="bottom" constant="7" id="wGI-io-hdw"/>
                                         <constraint firstItem="3mH-n1-dWj" firstAttribute="centerY" secondItem="pLh-aZ-q3B" secondAttribute="centerY" id="wY1-N1-Jfe"/>
                                         <constraint firstItem="pLh-aZ-q3B" firstAttribute="leading" secondItem="3mH-n1-dWj" secondAttribute="trailing" constant="3" id="xno-9i-HaQ"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="EXB-Zq-Axf"/>
-                                            <exclude reference="wGI-io-hdw"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="d3K-Mj-N6p" id="wSK-9G-Kpb"/>
-                                    <outlet property="endDateLabe" destination="vcm-rj-eoo" id="beB-7X-ywR"/>
                                     <outlet property="notificationTitleLabel" destination="3mH-n1-dWj" id="ucb-LQ-QIR"/>
                                 </connections>
                             </tableViewCell>
