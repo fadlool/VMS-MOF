@@ -121,7 +121,7 @@ public class Common: NSObject {
                 dayStr = String(hijriComponents.day)
             }
             
-             dateString = "\(hijriComponents.year)/\(monthStr)/\(dayStr)"
+             dateString = "\(dayStr)/\(monthStr)/\(hijriComponents.year)"
             
         } else if (!isHijri && dateFormat.isEqual(DATE_FORMAT_1)) {
             dateString = "\(gregorianComponents.day) \(gregorianComponents.month) \(gregorianComponents.year)"

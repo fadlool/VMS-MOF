@@ -86,7 +86,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     func vacationRequest(username:String, vacationrequest:VacationRequest){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>"+username+"</P_UserName><P_Absence_type_ID>"+vacationrequest.P_Absence_type_ID+"</P_Absence_type_ID><P_ST_DATE>"+vacationrequest.P_ST_DATE+"</P_ST_DATE><P_END_DATE>"+vacationrequest.P_END_DATE+"</P_END_DATE><P_DAYS>"+vacationrequest.P_DAYS+"</P_DAYS><P_COMMENT1>"+vacationrequest.P_COMMENT1+"</P_COMMENT1><P_COMMENT2>"+vacationrequest.P_COMMENT2+"</P_COMMENT2></CREATE_VACATION_REQUEST></soap:Body></soap:Envelope>"
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>"+username+"</P_UserName><P_Absence_type_ID>"+vacationrequest.P_Absence_type_ID+"</P_Absence_type_ID><P_ST_DATE>"+vacationrequest.P_ST_DATE+"</P_ST_DATE><P_END_DATE>"+vacationrequest.P_END_DATE+"</P_END_DATE><P_DAYS>"+vacationrequest.P_DAYS+"</P_DAYS><P_REPLACED_BY>"+vacationrequest.P_REPLACED_BY+"</P_REPLACED_BY><P_COMMENT1>"+vacationrequest.P_COMMENT1+"</P_COMMENT1><P_COMMENT2>"+vacationrequest.P_COMMENT2+"</P_COMMENT2></CREATE_VACATION_REQUEST></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.REQUEST_VACATION_SERVICE)
         
@@ -115,6 +115,12 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             alertView.show()
             return
             
+        }else if(returnResultString.containsString("soap:Server")){
+            let alertView:UIAlertView  = UIAlertView(title: "Server Error", message: returnResultString, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+            alertView.show()
+            return
+        
+        
         }
         if(self.methodName == Common.LOGIN_SERVICE){
             

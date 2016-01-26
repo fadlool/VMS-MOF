@@ -14,12 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        
+        
+                let defaults:NSDictionary  = NSDictionary.init(contentsOfFile: NSBundle.mainBundle().pathForResource("DefaultSettingValues", ofType: "plist")!)!
+                NSUserDefaults.standardUserDefaults().registerDefaults(defaults as! [String : AnyObject])
+        
+                NSUserDefaults.standardUserDefaults().setObject(["en_US"], forKey:"AppleLanguages")
+        
+                NSUserDefaults.standardUserDefaults().synchronize();
+        
+        return true
 
+    }
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let defaults:NSDictionary  = NSDictionary.init(contentsOfFile: NSBundle.mainBundle().pathForResource("DefaultSettingValues", ofType: "plist")!)!
-        NSUserDefaults.standardUserDefaults().registerDefaults(defaults as! [String : AnyObject])
+        
         
         self.window!.tintColor = UIColor(red: 0.1, green: 0.27, blue: 0.1, alpha: 1.0)
 //            [UIColor colorWithRed:0.93 green:0.80 blue:0.80 alpha:1.0]

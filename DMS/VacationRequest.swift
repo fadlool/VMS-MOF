@@ -15,6 +15,7 @@ class VacationRequest:NSObject {
     var P_ST_DATE:String = ""
     var P_END_DATE:String = ""
     var P_DAYS:String = ""
+    var P_REPLACED_BY:String = ""
     var P_COMMENT1:String = "xcxc"
     var P_COMMENT2:String = "sdc"
     
