@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 class NotificationDetailsViewController:UITableViewController {
-    @IBOutlet weak var beginDateLabel: UILabel!
-    
-    @IBOutlet weak var toUserLabel: UILabel!
+//    @IBOutlet weak var beginDateLabel: UILabel!
+//    
+//    @IBOutlet weak var toUserLabel: UILabel!
     @IBOutlet weak var employeeNameLabel: UILabel!
-    @IBOutlet weak var employeeNumberLabel: UILabel!
-    @IBOutlet weak var workGroupLabel: UILabel!
+//    @IBOutlet weak var employeeNumberLabel: UILabel!
+//    @IBOutlet weak var workGroupLabel: UILabel!
     
     @IBOutlet weak var vacationTypeLabel: UILabel!
     @IBOutlet weak var startDateLabel: UILabel!
@@ -88,13 +88,13 @@ class NotificationDetailsViewController:UITableViewController {
         self.vacationTypeLabel.text = selectedNotification.ABSENCETYPENAME
         self.startDateLabel.text = selectedNotification.STARTDATE
         self.endDateLabel.text = selectedNotification.ENDDATE
-        self.numberOfDaysLabel.text = String(selectedNotification.ABSENCEDAYS)
-        self.requestStatusLabel.text = selectedNotification.STATUS
-        self.beginDateLabel.text = selectedNotification.BEGINDATEHIJ
+        self.numberOfDaysLabel.text = String(Int(selectedNotification.ABSENCEDAYS))
+        self.requestStatusLabel.text = selectedNotification.SUBJECT
+//        self.beginDateLabel.text = selectedNotification.BEGINDATEHIJ
         self.employeeNameLabel.text = selectedNotification.FROMUSERNAME
-        self.employeeNumberLabel.text = "غير متاح"
-        self.workGroupLabel.text = "غير متاح"
-        self.toUserLabel.text = selectedNotification.TOUSERNAME
+//        self.employeeNumberLabel.text = "غير متاح"
+//        self.workGroupLabel.text = "غير متاح"
+//        self.toUserLabel.text = selectedNotification.TOUSERNAME
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

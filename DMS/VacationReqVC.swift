@@ -153,7 +153,7 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
         self.forcedVacLabel.text = userInfo!.VEMERGENCYLEAVEBAL
         
         self.empNameLabel.text = loginInfo.VFULLNAME
-        self.empNoLabel.text = loginInfo.PUSERNAME
+        self.empNoLabel.text = userInfo!.VEMPLOYEENUMBER
         self.workGroupLabel.text = loginInfo.VORGNAME
     
         
