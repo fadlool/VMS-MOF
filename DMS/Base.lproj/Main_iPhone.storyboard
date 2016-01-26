@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8892" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="اسم المستخدم" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KfR-ds-SIa">
                                 <rect key="frame" x="87" y="464" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0yX-K2-I7f"/>
@@ -34,7 +34,7 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="xyz_8892" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="كلمة المرور" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt8-qI-iEC">
                                 <rect key="frame" x="87" y="502" width="248" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="1bt-4f-OFy"/>
@@ -1100,6 +1100,8 @@
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="HD5-ig-BtA"/>
+                                                    <exclude reference="Oc7-Tb-pjF"/>
                                                     <exclude reference="8ls-bJ-T3c"/>
                                                     <exclude reference="Arq-Cf-2Vb"/>
                                                     <exclude reference="Eue-fZ-6QK"/>
@@ -1107,8 +1109,6 @@
                                                     <exclude reference="bw7-2D-xmV"/>
                                                     <exclude reference="jh4-DN-B0y"/>
                                                     <exclude reference="rPx-PJ-SBN"/>
-                                                    <exclude reference="HD5-ig-BtA"/>
-                                                    <exclude reference="Oc7-Tb-pjF"/>
                                                     <exclude reference="6uA-KX-4G6"/>
                                                     <exclude reference="VU7-b8-ECq"/>
                                                     <exclude reference="ZuY-2d-3Ga"/>
