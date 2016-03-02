@@ -54,7 +54,7 @@ class UserNotification: NSObject {
     var STARTDATE:String = "غير متاح"
     //"START_DATE_HIJ")
    
-    var STARTDATEHIJ:NSObject?
+    var STARTDATEHIJ:String = "غير متاح"
     //"END_DATE")
    
     var ENDDATE:String = "غير متاح"

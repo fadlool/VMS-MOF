@@ -117,7 +117,7 @@ class NotificationsViewController: UITableViewController {
             // Configure the cell...
             cell.notificationTitleLabel.text = contentItem.SUBJECT
             
-            cell.dateLabel.text = contentItem.STARTDATE
+            cell.dateLabel.text = contentItem.STARTDATEHIJ
            
 //            cell.endDateLabe.text = contentItem.ENDDATE
             
