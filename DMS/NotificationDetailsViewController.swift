@@ -86,8 +86,8 @@ class NotificationDetailsViewController:UITableViewController {
 //        let loginInfo:LoginInfo = sessionManager.loginInfo
         
         self.vacationTypeLabel.text = selectedNotification.ABSENCETYPENAME
-        self.startDateLabel.text = selectedNotification.STARTDATE
-        self.endDateLabel.text = selectedNotification.ENDDATE
+        self.startDateLabel.text = selectedNotification.STARTDATEHIJ
+        self.endDateLabel.text = selectedNotification.ENDDATEHIJ
         self.numberOfDaysLabel.text = String(Int(selectedNotification.ABSENCEDAYS))
         self.requestStatusLabel.text = selectedNotification.SUBJECT
 //        self.beginDateLabel.text = selectedNotification.BEGINDATEHIJ

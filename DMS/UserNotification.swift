@@ -60,7 +60,7 @@ class UserNotification: NSObject {
     var ENDDATE:String = "غير متاح"
     //"END_DATE_HIJ")
    
-    var ENDDATEHIJ:NSObject?
+    var ENDDATEHIJ:String? = "غير متاح"
     //"ABSENCE_DAYS")
    
     var ABSENCEDAYS:Double = 0.0

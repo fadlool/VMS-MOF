@@ -50,7 +50,8 @@ public class Common: NSObject {
        public class func setBaseUrl(url:String){
         self.BASE_URL_EXTERNAL = url
     }
-
+    
+   
     public class func changeLanguage(){
         // use whatever language/locale id you want to override
 //        let language = SessionManager.sharedSessionManager().sessionInfo.language

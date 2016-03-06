@@ -422,7 +422,37 @@ static void FixKeyLengths( CCAlgorithm algorithm, NSMutableData * keyData, NSMut
 	#endif
 	// ensure correct lengths for key and iv data, based on algorithms
 	FixKeyLengths( algorithm, keyData, ivData );
-	
+  
+        
+    NSArray *keyBytes = @[@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28,@113,@199,@28];
+    unsigned c = keyBytes.count;
+    uint8_t *bytes = malloc(sizeof(*bytes) * c);
+    
+    unsigned i;
+    for (i = 0; i < c; i++)
+    {
+        int str = [[keyBytes objectAtIndex:i] integerValue];
+        int byte = str;
+        bytes[i] = byte;
+    }
+
+    keyData = [NSData dataWithBytesNoCopy:bytes length:c freeWhenDone:YES];
+    ///////////////////////////////////////////
+    NSArray *ivBytes = @[@1, @2, @3, @4, @5, @6, @6, @5, @4, @3, @2, @1, @7, @7, @7, @7 ];
+    unsigned y = ivBytes.count;
+    uint8_t *bytesiv = malloc(sizeof(*bytes) * c);
+    
+    unsigned x;
+    for (x = 0; x < y; x++)
+    {
+        int str = [[ivBytes objectAtIndex:x] integerValue];
+        int byte = str;
+        bytesiv[i] = byte;
+    }
+    
+    ivData = [NSData dataWithBytesNoCopy:bytesiv length:y freeWhenDone:YES];
+    
+    
 	status = CCCryptorCreate( kCCEncrypt, algorithm, options,
                            [keyData bytes], [keyData length], [ivData bytes],
                            &cryptor );

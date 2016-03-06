@@ -109,7 +109,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         let message:String = "test"
         let password:String = "p4ssw0rd"
         
-        
         let encrypted_data = AESCrypt.encrypt(message, password: password)
         
         self.login()
