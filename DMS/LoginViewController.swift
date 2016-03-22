@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CryptoSwift
 
 class LoginViewController: UIViewController,UITextFieldDelegate {
     
@@ -106,10 +107,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     
     }
     @IBAction func loginBtnTapped(sender: AnyObject) {
-        let message:String = "test"
-        let password:String = "p4ssw0rd"
         
-        let encrypted_data = AESCrypt.encrypt(message, password: password)
+        
         
         self.login()
        

@@ -27,4 +27,7 @@
 //"V_VALUE")
 @property (nonatomic, strong) NSString*  VVALUE;
 
+@property (nonatomic, strong) NSString*  V_WS_USER_NAME;
+@property (nonatomic, strong) NSString*  V_WS_PASSWORD;
+
 @end

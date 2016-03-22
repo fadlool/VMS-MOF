@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		124023E11C830E5700A61226 /* AESCrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 124023DA1C830E5700A61226 /* AESCrypt.m */; };
-		124023E21C830E5700A61226 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 124023DC1C830E5700A61226 /* NSData+Base64.m */; };
-		124023E31C830E5700A61226 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 124023DE1C830E5700A61226 /* NSData+CommonCrypto.m */; };
-		124023E41C830E5700A61226 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 124023E01C830E5700A61226 /* NSString+Base64.m */; };
 		126E9A041C15E86300293B77 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E9A031C15E86300293B77 /* UserInfo.m */; };
 		126E9A081C15E87000293B77 /* SessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E9A061C15E87000293B77 /* SessionManager.m */; };
 		126E9A0C1C15F1B900293B77 /* LoginInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 126E9A0B1C15F1B900293B77 /* LoginInfo.m */; };
@@ -69,6 +65,7 @@
 		12E2769F1C05E94600DA23E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E2769D1C05E94600DA23E9 /* LaunchScreen.storyboard */; };
 		12EAF7591C382639001ABEFD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12EAF7581C382639001ABEFD /* SystemConfiguration.framework */; };
 		12EAF75C1C38268A001ABEFD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EAF75B1C38268A001ABEFD /* Reachability.m */; };
+		E16D8DEE31BC1A3F7684077E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AF95E33FC380F5D2A91CB4 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,14 +86,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		124023D91C830E5700A61226 /* AESCrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AESCrypt.h; path = encryption/AESCrypt.h; sourceTree = "<group>"; };
-		124023DA1C830E5700A61226 /* AESCrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AESCrypt.m; path = encryption/AESCrypt.m; sourceTree = "<group>"; };
-		124023DB1C830E5700A61226 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Base64.h"; path = "encryption/NSData+Base64.h"; sourceTree = "<group>"; };
-		124023DC1C830E5700A61226 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Base64.m"; path = "encryption/NSData+Base64.m"; sourceTree = "<group>"; };
-		124023DD1C830E5700A61226 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+CommonCrypto.h"; path = "encryption/NSData+CommonCrypto.h"; sourceTree = "<group>"; };
-		124023DE1C830E5700A61226 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+CommonCrypto.m"; path = "encryption/NSData+CommonCrypto.m"; sourceTree = "<group>"; };
-		124023DF1C830E5700A61226 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Base64.h"; path = "encryption/NSString+Base64.h"; sourceTree = "<group>"; };
-		124023E01C830E5700A61226 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Base64.m"; path = "encryption/NSString+Base64.m"; sourceTree = "<group>"; };
 		126E9A011C15E86300293B77 /* SessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionManager.h; sourceTree = "<group>"; };
 		126E9A021C15E86300293B77 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		126E9A031C15E86300293B77 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
@@ -188,6 +177,9 @@
 		12EAF7581C382639001ABEFD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		12EAF75A1C38268A001ABEFD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		12EAF75B1C38268A001ABEFD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		85AF95E33FC380F5D2A91CB4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A60A55DB037145C2A69DDAF /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9FFDA4116F993F165D24F77F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +193,7 @@
 				127C79C31C12259000757D12 /* Foundation.framework in Frameworks */,
 				12B743E21C0EDAEE0059FD8E /* UIKit.framework in Frameworks */,
 				12B82C5B1C0DEDA700300F3E /* CoreGraphics.framework in Frameworks */,
+				E16D8DEE31BC1A3F7684077E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,25 +214,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		124023D81C830E4200A61226 /* encryption */ = {
-			isa = PBXGroup;
-			children = (
-				124023D91C830E5700A61226 /* AESCrypt.h */,
-				124023DA1C830E5700A61226 /* AESCrypt.m */,
-				124023DB1C830E5700A61226 /* NSData+Base64.h */,
-				124023DC1C830E5700A61226 /* NSData+Base64.m */,
-				124023DD1C830E5700A61226 /* NSData+CommonCrypto.h */,
-				124023DE1C830E5700A61226 /* NSData+CommonCrypto.m */,
-				124023DF1C830E5700A61226 /* NSString+Base64.h */,
-				124023E01C830E5700A61226 /* NSString+Base64.m */,
-			);
-			name = encryption;
-			sourceTree = "<group>";
-		};
 		127C79A01C121A8800757D12 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				124023D81C830E4200A61226 /* encryption */,
 				129833381C1951690069A3F5 /* CurvedLabel.swift */,
 				127C79B21C121BAE00757D12 /* Pickers */,
 				127C79A71C121B5400757D12 /* AFNetworking */,
@@ -346,6 +323,7 @@
 				127C79C21C12259000757D12 /* Foundation.framework */,
 				12B743E11C0EDAEE0059FD8E /* UIKit.framework */,
 				12B82C5A1C0DEDA700300F3E /* CoreGraphics.framework */,
+				85AF95E33FC380F5D2A91CB4 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -358,6 +336,7 @@
 				12E2767D1C05B6D700DA23E9 /* DMSTests */,
 				12E276881C05B6D700DA23E9 /* DMSUITests */,
 				12E276641C05B6D700DA23E9 /* Products */,
+				3EF15EEC0C552933C4606A53 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -437,6 +416,15 @@
 			name = LocalizableImages;
 			sourceTree = "<group>";
 		};
+		3EF15EEC0C552933C4606A53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A60A55DB037145C2A69DDAF /* Pods.debug.xcconfig */,
+				9FFDA4116F993F165D24F77F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,9 +432,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12E2768E1C05B6D700DA23E9 /* Build configuration list for PBXNativeTarget "MOF" */;
 			buildPhases = (
+				982184F465B7D99F6141C0AF /* Check Pods Manifest.lock */,
 				12E2765F1C05B6D700DA23E9 /* Sources */,
 				12E276601C05B6D700DA23E9 /* Frameworks */,
 				12E276611C05B6D700DA23E9 /* Resources */,
+				C9D7D0A26832241408F1A7B3 /* Embed Pods Frameworks */,
+				6085F51B65CEEAB6CBCB592F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -570,6 +561,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6085F51B65CEEAB6CBCB592F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		982184F465B7D99F6141C0AF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C9D7D0A26832241408F1A7B3 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		12E2765F1C05B6D700DA23E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -577,7 +616,6 @@
 			files = (
 				126E9A0C1C15F1B900293B77 /* LoginInfo.m in Sources */,
 				127BCB681C161BE200D63B29 /* NotificationCell.swift in Sources */,
-				124023E31C830E5700A61226 /* NSData+CommonCrypto.m in Sources */,
 				12E276691C05B6D700DA23E9 /* LoginViewController.swift in Sources */,
 				12E2766F1C05B6D700DA23E9 /* VMS.xcdatamodeld in Sources */,
 				126E9A081C15E87000293B77 /* SessionManager.m in Sources */,
@@ -601,13 +639,11 @@
 				127C79BC1C121BC800757D12 /* AbstractActionSheetPicker.m in Sources */,
 				127C79961C11DF7A00757D12 /* CustomAlertInputDelegate.m in Sources */,
 				127C79D21C12269400757D12 /* AFHTTPRequestOperationManager.m in Sources */,
-				124023E21C830E5700A61226 /* NSData+Base64.m in Sources */,
 				12B82C431C0DC2D600300F3E /* SideMenuItem.swift in Sources */,
 				129833371C194D050069A3F5 /* VacationReqVC.swift in Sources */,
 				129833331C18A32D0069A3F5 /* NotificationDetailsViewController.swift in Sources */,
 				127C79D11C12269400757D12 /* AFHTTPRequestOperation.m in Sources */,
 				129833391C1951690069A3F5 /* CurvedLabel.swift in Sources */,
-				124023E41C830E5700A61226 /* NSString+Base64.m in Sources */,
 				127C79D91C12269400757D12 /* AFURLSessionManager.m in Sources */,
 				12B82C451C0DCEC100300F3E /* MainViewController.swift in Sources */,
 				127C79D41C12269400757D12 /* AFNetworkReachabilityManager.m in Sources */,
@@ -618,7 +654,6 @@
 				12B82C401C0DC14400300F3E /* SidePanelViewController.swift in Sources */,
 				127C799D1C1206A500757D12 /* ProfileViewController.swift in Sources */,
 				12E276671C05B6D700DA23E9 /* AppDelegate.swift in Sources */,
-				124023E11C830E5700A61226 /* AESCrypt.m in Sources */,
 				12B743E41C0EE6EE0059FD8E /* Constants.swift in Sources */,
 				127C79A31C121AB500757D12 /* MBProgressHUD.m in Sources */,
 			);
@@ -760,6 +795,7 @@
 		};
 		12E2768F1C05B6D700DA23E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A60A55DB037145C2A69DDAF /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -779,6 +815,7 @@
 		};
 		12E276901C05B6D700DA23E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FFDA4116F993F165D24F77F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

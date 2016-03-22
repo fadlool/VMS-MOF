@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CryptoSwift
 
 class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
@@ -24,6 +25,76 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     var methodName:String = ""
     var returnResultString:String = ""
 
+    internal func decrypt(encryptedValue:String)->String{
+        let ivBytes:[UInt8] = [ 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1, 7, 7, 7, 7 ];
+        
+        let keyBytes:[UInt8] = [199 ,28, 113,199, 28, 113, 199, 28, 113, 199, 28, 113,  199, 28, 113, 199, 28, 113, 199, 28, 113,  199, 28, 113, 199, 28, 113,  199, 28, 113, 199, 28];
+        
+        
+        let input: [UInt8] = Array(encryptedValue.utf8)
+        
+        let encryptedNSData = NSData(base64EncodedString: encryptedValue, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
+        
+        do {
+            
+            
+            let decrypted: [UInt8] = try AES(key: keyBytes, iv: ivBytes, blockMode: .CBC).decrypt((encryptedNSData?.arrayOfBytes())!, padding: PKCS7())
+            
+            var result = String(bytes: decrypted, encoding: NSUTF8StringEncoding)!
+            
+            print(result)
+            
+            result = String(bytes: decrypted, encoding: NSUTF8StringEncoding)!
+            print("result\t\(result )")
+            
+            return result
+        } catch AES.Error.BlockSizeExceeded {
+            // block size exceeded
+        } catch {
+            // some error
+        }
+        
+        return ""
+        
+    }
+    
+    
+    internal func encrypt(value:String)->String{
+        let ivBytes:[UInt8] = [ 1, 2, 3, 4, 5, 6, 6, 5, 4, 3, 2, 1, 7, 7, 7, 7 ];
+        
+        let keyBytes:[UInt8] = [199 ,28, 113,199, 28, 113, 199, 28, 113, 199, 28, 113,  199, 28, 113, 199, 28, 113, 199, 28, 113,  199, 28, 113, 199, 28, 113,  199, 28, 113, 199, 28];
+        
+        
+        let input: [UInt8] = Array(value.utf8)
+        
+        
+        do {
+            
+            let encrypted: [UInt8] = try AES(key: keyBytes, iv: ivBytes, blockMode: .CBC).encrypt(input, padding: PKCS7())
+            let encryptedNSData = NSData(bytes: encrypted, length: encrypted.count)
+            let encryptedBase64 = encryptedNSData.base64EncodedStringWithOptions([])
+            
+            print(encryptedBase64)
+            
+            let decrypted: [UInt8] = try AES(key: keyBytes, iv: ivBytes, blockMode: .CBC).decrypt(encrypted, padding: PKCS7())
+            
+            var result = String(bytes: decrypted, encoding: NSUTF8StringEncoding)!
+            
+            print(result)
+            
+            result = String(bytes: decrypted, encoding: NSUTF8StringEncoding)!
+            print("result\t\(result )")
+            
+            return encryptedBase64
+        } catch AES.Error.BlockSizeExceeded {
+            // block size exceeded
+        } catch {
+            // some error
+        }
+        
+        return ""
+        
+    }
     
     init(viewController:UIViewController) {
         self.viewController = viewController
@@ -31,31 +102,35 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     func login(username:String, password:String){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_LOGIN xmlns='http://tempuri.org/'><USERNAME>"+username+"</USERNAME><PASSWORD>"+password+"</PASSWORD></XXX_LOGIN></soap:Body></soap:Envelope>"
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_LOGIN xmlns='http://tempuri.org/'><USERNAME>\(encrypt(username))</USERNAME><PASSWORD>\(encrypt(password))</PASSWORD></XXX_LOGIN></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.LOGIN_SERVICE)
 
     }
     
     func getUserInfo(username:String){
-        
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GET_USER_INFO xmlns='http://tempuri.org/'><USERNAME>"+username+"</USERNAME></GET_USER_INFO></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><GET_USER_INFO xmlns='http://tempuri.org/'><USERNAME>\(encrypt(username))</USERNAME><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></GET_USER_INFO></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.GET_USER_INFO_SERVICE)
-        
     }
-    
     
     func getUserNotifications(username:String, status:String){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_GET_USER_NOTIFICATIONS xmlns='http://tempuri.org/'><p_UserName>"+username+"</p_UserName><P_STATUS>"+status+"</P_STATUS></XXX_GET_USER_NOTIFICATIONS></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_GET_USER_NOTIFICATIONS xmlns='http://tempuri.org/'><p_UserName>\(encrypt(username))</p_UserName><P_STATUS>\(encrypt(status))</P_STATUS><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></XXX_GET_USER_NOTIFICATIONS></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.GET_USER_NOTIFS_SERVICE)
         
     }
+    
     func getEmployeesList(){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_GET_EMP_LIST xmlns='http://tempuri.org/'></XXX_GET_EMP_LIST></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_GET_EMP_LIST xmlns='http://tempuri.org/'><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></XXX_GET_EMP_LIST></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.GET_EMPLOYEES_LIST_SERVICE)
         
@@ -63,14 +138,18 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     
     func approveRequest(username:String, noteId:String){
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_APPROVE_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_APPROVE_REQUEST></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_APPROVE_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>\(encrypt(username))</P_USERNAME><p_Not_ID>\(encrypt(noteId))</p_Not_ID><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></XXX_APPROVE_REQUEST></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.APPROVE_REQ_SERVICE)
         
     }
     func rejectRequest(username:String, noteId:String){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_REJECT_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_REJECT_REQUEST></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_REJECT_REQUEST xmlns='http://tempuri.org/'><P_USERNAME>\(encrypt(username))</P_USERNAME><p_Not_ID>\(encrypt(noteId))</p_Not_ID><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></XXX_REJECT_REQUEST></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.REJECT_REQ_SERVICE)
         
@@ -78,7 +157,9 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     func cancelRequest(username:String, noteId:String){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_CLOSE_FYI_NOTIFICATION xmlns='http://tempuri.org/'><P_USERNAME>"+username+"</P_USERNAME><p_Not_ID>"+noteId+"</p_Not_ID></XXX_CLOSE_FYI_NOTIFICATION></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><XXX_CLOSE_FYI_NOTIFICATION xmlns='http://tempuri.org/'><P_USERNAME>\(encrypt(username))</P_USERNAME><p_Not_ID>\(encrypt(noteId))</p_Not_ID><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></XXX_CLOSE_FYI_NOTIFICATION></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.CLOSE_REQ_SERVICE)
         
@@ -86,7 +167,9 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     
     func vacationRequest(username:String, vacationrequest:VacationRequest){
         
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>"+username+"</P_UserName><P_Absence_type_ID>"+vacationrequest.P_Absence_type_ID+"</P_Absence_type_ID><P_ST_DATE>"+vacationrequest.P_ST_DATE+"</P_ST_DATE><P_END_DATE>"+vacationrequest.P_END_DATE+"</P_END_DATE><P_DAYS>"+vacationrequest.P_DAYS+"</P_DAYS><P_REPLACED_BY>"+vacationrequest.P_REPLACED_BY+"</P_REPLACED_BY><P_COMMENT1>"+vacationrequest.P_COMMENT1+"</P_COMMENT1><P_COMMENT2>"+vacationrequest.P_COMMENT2+"</P_COMMENT2></CREATE_VACATION_REQUEST></soap:Body></soap:Envelope>"
+        let sessionManager = SessionManager.sharedSessionManager()
+        let loginInfo:LoginInfo = sessionManager.loginInfo
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>\(encrypt(username))</P_UserName><P_Absence_type_ID>\(encrypt(vacationrequest.P_Absence_type_ID))</P_Absence_type_ID><P_ST_DATE>\(encrypt(vacationrequest.P_ST_DATE))</P_ST_DATE><P_END_DATE>\(encrypt(vacationrequest.P_END_DATE))</P_END_DATE><P_DAYS>\(encrypt(vacationrequest.P_DAYS))</P_DAYS><P_REPLACED_BY>\(encrypt(vacationrequest.P_REPLACED_BY))</P_REPLACED_BY><P_COMMENT1>\(encrypt(vacationrequest.P_COMMENT1))</P_COMMENT1><P_COMMENT2>\(encrypt(vacationrequest.P_COMMENT2))</P_COMMENT2></CREATE_VACATION_REQUEST><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.REQUEST_VACATION_SERVICE)
         
@@ -130,14 +213,18 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             
             let loginJsonResDict:NSDictionary = loginJsonResArr.objectAtIndex(0) as! NSDictionary
             let loginInfo:LoginInfo  = LoginInfo()
-            loginInfo.PUSERNAME = loginJsonResDict.valueForKey("P_USERNAME") as! String
-            loginInfo.VVALUE = loginJsonResDict.valueForKey("V_VALUE") as! String
+            loginInfo.PUSERNAME = decrypt(loginJsonResDict.valueForKey("P_USERNAME") as! String)
+            loginInfo.VVALUE = decrypt(loginJsonResDict.valueForKey("V_VALUE") as! String)
+            
+            loginInfo.V_WS_USER_NAME = decrypt(loginJsonResDict.valueForKey("V_WS_USER_NAME") as! String)
+            
+            loginInfo.V_WS_PASSWORD = decrypt(loginJsonResDict.valueForKey("V_WS_PASSWORD") as! String)
             
             if(loginInfo.VVALUE == "Y"){
-                loginInfo.VUSERTYPE = loginJsonResDict.valueForKey("V_USER_TYPE") as! String
-                loginInfo.VFULLNAME = loginJsonResDict.valueForKey("V_FULL_NAME") as! String
-                loginInfo.VORGNAME = loginJsonResDict.valueForKey("V_ORG_NAME") as! String
-                loginInfo.VASSIGNSTATUS = loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String
+                loginInfo.VUSERTYPE = decrypt(loginJsonResDict.valueForKey("V_USER_TYPE") as! String)
+                loginInfo.VFULLNAME = decrypt(loginJsonResDict.valueForKey("V_FULL_NAME") as! String)
+                loginInfo.VORGNAME = decrypt(loginJsonResDict.valueForKey("V_ORG_NAME") as! String)
+                loginInfo.VASSIGNSTATUS = decrypt(loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String)
                 
                 let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
                 sessionManager.loginInfo = loginInfo
@@ -157,17 +244,17 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 
                 let loginJsonResDict:NSDictionary = loginJsonResArr.objectAtIndex(0) as! NSDictionary
                 let userInfo:UserInfo = UserInfo()
-                userInfo.PUSERNAME =  loginJsonResDict.valueForKey("P_USERNAME") as! String
-                userInfo.VFULLNAME =  loginJsonResDict.valueForKey("V_FULL_NAME") as! String
-                userInfo.VORGNAME =  loginJsonResDict.valueForKey("V_ORG_NAME") as! String
-                userInfo.VASSIGNSTATUS =  loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String
-                userInfo.VMOFJOINDT =  loginJsonResDict.valueForKey("V_MOF_JOIN_DT") as! String
-                userInfo.VGOVTJOINDT =  loginJsonResDict.valueForKey("V_GOVT_JOIN_DT") as! String
-                userInfo.VGRADENAME =  loginJsonResDict.valueForKey("V_GRADE_NAME") as! String
-                userInfo.VEMPLOYEENUMBER =  loginJsonResDict.valueForKey("V_EMPLOYEE_NUMBER") as! String
-                userInfo.VEMPTYPE =  loginJsonResDict.valueForKey("V_EMP_TYPE") as! String
-                userInfo.VANNUALLEAVEBAL =  loginJsonResDict.valueForKey("V_ANNUAL_LEAVE_BAL") as! String
-                userInfo.VEMERGENCYLEAVEBAL =  loginJsonResDict.valueForKey("V_EMERGENCY_LEAVE_BAL") as! String
+                userInfo.PUSERNAME =  decrypt(loginJsonResDict.valueForKey("P_USERNAME") as! String)
+                userInfo.VFULLNAME =  decrypt(loginJsonResDict.valueForKey("V_FULL_NAME") as! String)
+                userInfo.VORGNAME =  decrypt(loginJsonResDict.valueForKey("V_ORG_NAME") as! String)
+                userInfo.VASSIGNSTATUS =  decrypt(loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String)
+                userInfo.VMOFJOINDT =  decrypt(loginJsonResDict.valueForKey("V_MOF_JOIN_DT") as! String)
+                userInfo.VGOVTJOINDT =  decrypt(loginJsonResDict.valueForKey("V_GOVT_JOIN_DT") as! String)
+                userInfo.VGRADENAME =  decrypt(loginJsonResDict.valueForKey("V_GRADE_NAME") as! String)
+                userInfo.VEMPLOYEENUMBER = decrypt( loginJsonResDict.valueForKey("V_EMPLOYEE_NUMBER") as! String)
+                userInfo.VEMPTYPE =  decrypt(loginJsonResDict.valueForKey("V_EMP_TYPE") as! String)
+                userInfo.VANNUALLEAVEBAL =  decrypt(loginJsonResDict.valueForKey("V_ANNUAL_LEAVE_BAL") as! String)
+                userInfo.VEMERGENCYLEAVEBAL =  decrypt(loginJsonResDict.valueForKey("V_EMERGENCY_LEAVE_BAL") as! String)
                 
                 
                 let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
@@ -203,25 +290,25 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 notification = UserNotification()
                 
                 if((notificationDict.valueForKey("SUBJECT") as? NSNull) == nil){
-                    notification.SUBJECT = notificationDict.valueForKey("SUBJECT") as! String
+                    notification.SUBJECT = decrypt(notificationDict.valueForKey("SUBJECT") as! String)
                 }
                 
                 if((notificationDict.valueForKey("TO_USER_NAME") as? NSNull) == nil){
-                    notification.TOUSERNAME = notificationDict.valueForKey("TO_USER_NAME") as! String
+                    notification.TOUSERNAME = decrypt(notificationDict.valueForKey("TO_USER_NAME") as! String)
                 }
                 
                 if((notificationDict.valueForKey("FROM_USER_NAME") as? NSNull) == nil){
                     notification.FROMUSERNAME
-                        = notificationDict.valueForKey("FROM_USER_NAME") as! String
+                        = decrypt(notificationDict.valueForKey("FROM_USER_NAME") as! String)
                 }
                 
                 if((notificationDict.valueForKey("ABSENCE_TYPE_ID") as? NSNull) == nil){
-                    notification.ABSENCETYPEID = notificationDict.valueForKey("ABSENCE_TYPE_ID") as! String
+                    notification.ABSENCETYPEID = decrypt(notificationDict.valueForKey("ABSENCE_TYPE_ID") as! String)
 
                 }
                 
                 if((notificationDict.valueForKey("ABSENCE_TYPE_NAME") as? NSNull) == nil){
-                    notification.ABSENCETYPENAME = notificationDict.valueForKey("ABSENCE_TYPE_NAME") as! String
+                    notification.ABSENCETYPENAME = decrypt(notificationDict.valueForKey("ABSENCE_TYPE_NAME") as! String)
                 }
                 
                 if((notificationDict.valueForKey("ABSENCE_DAYS") as? NSNull) == nil){
@@ -229,19 +316,19 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("BEGIN_DATE_HIJ") as? NSNull) == nil){
-                    notification.BEGINDATEHIJ = notificationDict.valueForKey("BEGIN_DATE_HIJ") as! String
+                    notification.BEGINDATEHIJ = decrypt(notificationDict.valueForKey("BEGIN_DATE_HIJ") as! String)
                 }
                 
                 if((notificationDict.valueForKey("START_DATE_HIJ") as? NSNull) == nil){
-                    notification.STARTDATEHIJ = notificationDict.valueForKey("START_DATE_HIJ") as! String
+                    notification.STARTDATEHIJ = decrypt(notificationDict.valueForKey("START_DATE_HIJ") as! String)
                 }
                 
                 if((notificationDict.valueForKey("END_DATE_HIJ") as? NSNull) == nil){
-                    notification.ENDDATEHIJ = notificationDict.valueForKey("END_DATE_HIJ") as! String
+                    notification.ENDDATEHIJ = decrypt(notificationDict.valueForKey("END_DATE_HIJ") as! String)
                 }
                 
                 if((notificationDict.valueForKey("START_DATE") as? NSNull) == nil){
-                    let str:String = notificationDict.valueForKey("START_DATE") as! String
+                    let str:String = decrypt(notificationDict.valueForKey("START_DATE") as! String)
                     
                     let range = str.rangeOfString("T")!
                     let substring: String = str.substringToIndex(range.startIndex)
@@ -252,7 +339,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("END_DATE") as? NSNull) == nil){
-                    let str:String = notificationDict.valueForKey("END_DATE") as! String
+                    let str:String = decrypt(notificationDict.valueForKey("END_DATE") as! String)
                     
                     let range = str.rangeOfString("T")!
                     let substring: String = str.substringToIndex(range.startIndex)
@@ -263,19 +350,19 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("P_USERNAME") as? NSNull) == nil){
-                    notification.PUSERNAME = notificationDict.valueForKey("P_USERNAME") as! String
+                    notification.PUSERNAME = decrypt(notificationDict.valueForKey("P_USERNAME") as! String)
                 }
                 
                 if((notificationDict.valueForKey("MESSAGE_TYPE") as? NSNull) == nil){
-                    notification.MESSAGETYPE = notificationDict.valueForKey("MESSAGE_TYPE") as! String
+                    notification.MESSAGETYPE = decrypt(notificationDict.valueForKey("MESSAGE_TYPE") as! String)
                 }
                 
                 if((notificationDict.valueForKey("TO_USER_NAME") as? NSNull) == nil){
-                    notification.TOUSERNAME = notificationDict.valueForKey("TO_USER_NAME") as! String
+                    notification.TOUSERNAME = decrypt(notificationDict.valueForKey("TO_USER_NAME") as! String)
                 }
                 
                 if((notificationDict.valueForKey("STATUS") as? NSNull) == nil){
-                    notification.STATUS = notificationDict.valueForKey("STATUS") as! String
+                    notification.STATUS = decrypt(notificationDict.valueForKey("STATUS") as! String)
                 }
                 
                 if((notificationDict.valueForKey("NOT_ID") as? NSNull) == nil){
@@ -478,7 +565,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
         let url = NSURL(string: urlString)
         
         let theRequest = NSMutableURLRequest(URL: url!)
-        
+        print(soapMessage)
         let msgLength = String(soapMessage.length)
         
         theRequest.addValue("text/xml; charset=utf-8", forHTTPHeaderField: "Content-Type")
