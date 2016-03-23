@@ -169,7 +169,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
         
         let sessionManager = SessionManager.sharedSessionManager()
         let loginInfo:LoginInfo = sessionManager.loginInfo
-        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>\(encrypt(username))</P_UserName><P_Absence_type_ID>\(encrypt(vacationrequest.P_Absence_type_ID))</P_Absence_type_ID><P_ST_DATE>\(encrypt(vacationrequest.P_ST_DATE))</P_ST_DATE><P_END_DATE>\(encrypt(vacationrequest.P_END_DATE))</P_END_DATE><P_DAYS>\(encrypt(vacationrequest.P_DAYS))</P_DAYS><P_REPLACED_BY>\(encrypt(vacationrequest.P_REPLACED_BY))</P_REPLACED_BY><P_COMMENT1>\(encrypt(vacationrequest.P_COMMENT1))</P_COMMENT1><P_COMMENT2>\(encrypt(vacationrequest.P_COMMENT2))</P_COMMENT2></CREATE_VACATION_REQUEST><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></soap:Body></soap:Envelope>"
+        let soapMessage:NSString = "<?xml version='1.0' encoding='utf-8'?><soap:Envelope xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'><soap:Body><CREATE_VACATION_REQUEST xmlns='http://tempuri.org/'><P_UserName>\(encrypt(username))</P_UserName><P_Absence_type_ID>\(encrypt(vacationrequest.P_Absence_type_ID))</P_Absence_type_ID><P_ST_DATE>\(encrypt(vacationrequest.P_ST_DATE))</P_ST_DATE><P_END_DATE>\(encrypt(vacationrequest.P_END_DATE))</P_END_DATE><P_DAYS>\(encrypt(vacationrequest.P_DAYS))</P_DAYS><P_REPLACED_BY>\(encrypt(vacationrequest.P_REPLACED_BY))</P_REPLACED_BY><P_COMMENT1>\(encrypt(vacationrequest.P_COMMENT1))</P_COMMENT1><P_COMMENT2>\(encrypt(vacationrequest.P_COMMENT2))</P_COMMENT2><WebServiceUserName>\(encrypt(loginInfo.V_WS_USER_NAME))</WebServiceUserName><WebServicePass>\(encrypt(loginInfo.V_WS_PASSWORD))</WebServicePass></CREATE_VACATION_REQUEST></soap:Body></soap:Envelope>"
         
         self.processRequest(soapMessage, service: Common.REQUEST_VACATION_SERVICE)
         
@@ -312,7 +312,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("ABSENCE_DAYS") as? NSNull) == nil){
-                    notification.ABSENCEDAYS = notificationDict.valueForKey("ABSENCE_DAYS") as! Double
+                    notification.ABSENCEDAYS = Double(decrypt(notificationDict.valueForKey("ABSENCE_DAYS") as! String))!
                 }
                 
                 if((notificationDict.valueForKey("BEGIN_DATE_HIJ") as? NSNull) == nil){
@@ -330,23 +330,23 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 if((notificationDict.valueForKey("START_DATE") as? NSNull) == nil){
                     let str:String = decrypt(notificationDict.valueForKey("START_DATE") as! String)
                     
-                    let range = str.rangeOfString("T")!
-                    let substring: String = str.substringToIndex(range.startIndex)
+//                    let range = str.rangeOfString("T")!
+//                    let substring: String = str.substringToIndex(range.startIndex)
                     
-                    NSLog(substring)
+                    NSLog(str)
                     
-                    notification.STARTDATE = substring
+                    notification.STARTDATE = str
                 }
                 
                 if((notificationDict.valueForKey("END_DATE") as? NSNull) == nil){
                     let str:String = decrypt(notificationDict.valueForKey("END_DATE") as! String)
                     
-                    let range = str.rangeOfString("T")!
-                    let substring: String = str.substringToIndex(range.startIndex)
-
-                    NSLog(substring)
+//                    let range = str.rangeOfString("T")!
+//                    let substring: String = str.substringToIndex(range.startIndex)
+//
+//                    NSLog(substring)
                     
-                    notification.ENDDATE = substring
+                    notification.ENDDATE = str
                 }
                 
                 if((notificationDict.valueForKey("P_USERNAME") as? NSNull) == nil){
@@ -366,7 +366,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("NOT_ID") as? NSNull) == nil){
-                    notification.NOTID = notificationDict.valueForKey("NOT_ID") as! Double
+                    notification.NOTID = Double(decrypt(notificationDict.valueForKey("NOT_ID") as! String))!
                 }
                 
                 notificationsViewController.notificationsList.addObject(notification)
@@ -383,7 +383,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             let reqJsonResDict:NSDictionary = reqJsonResArr.objectAtIndex(0) as! NSDictionary
             
             
-            if ((reqJsonResDict.valueForKey("P_MSG")?.isEqualToString("Done")) != nil) {
+            if ((decrypt((reqJsonResDict.valueForKey("P_MSG"))! as! String) == "Done")) {
                 let alert:UIAlertView
                 alert = UIAlertView(title: nil, message: "your_request_isapproved".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
                 
@@ -407,7 +407,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             let reqJsonResDict:NSDictionary = reqJsonResArr.objectAtIndex(0) as! NSDictionary
             
             
-            if ((reqJsonResDict.valueForKey("P_MSG")?.isEqualToString("Done")) != nil) {
+            if ((decrypt((reqJsonResDict.valueForKey("P_MSG"))! as! String) == "Done")) {
                 let alert:UIAlertView
                 alert = UIAlertView(title: nil, message: "your_request_isrejected".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
                 
@@ -432,7 +432,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             let reqJsonResDict:NSDictionary = reqJsonResArr.objectAtIndex(0) as! NSDictionary
             
             
-            if ((reqJsonResDict.valueForKey("P_MSG")?.isEqualToString("Done")) != nil) {
+            if ((decrypt((reqJsonResDict.valueForKey("P_MSG"))! as! String) == "Done")) {
                 let alert:UIAlertView
                 
                 alert = UIAlertView(title: nil, message: "your_request_isclosed".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
@@ -482,7 +482,8 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
             
             if((resDict.valueForKey("P_MSG") as? NSNull) == nil){
                 
-                if (resDict.valueForKey("P_MSG")!.isEqual("Done") ) {
+                if ((decrypt((resDict.valueForKey("P_MSG"))! as! String) == "Done")) {
+//                if (resDict.valueForKey("P_MSG")!.isEqual("Done") ) {
                     let alert:UIAlertView
                     alert = UIAlertView(title: nil, message: "your_request_isdone".localized,delegate: viewController, cancelButtonTitle: "ok_dialog".localized)
                     
@@ -493,9 +494,9 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                     }
                 
                 }
-            else if (!resDict.valueForKey("P_MSG")!.isEqual("Done") ) {
+            else if (decrypt((resDict.valueForKey("P_MSG"))! as! String) != "Done") {
                 
-                let alertView:UIAlertView  = UIAlertView(title: nil, message: resDict.valueForKey("P_MSG") as! String, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                let alertView:UIAlertView  = UIAlertView(title: nil, message: decrypt((resDict.valueForKey("P_MSG"))! as! String), delegate: nil, cancelButtonTitle: "ok_dialog".localized )
                 alertView.show()
                 
             }else{
@@ -580,7 +581,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
         connection!.start()
         
         if (connection == true) {
-            var mutableData : Void = NSMutableData.initialize()
+            NSMutableData.initialize()
         }
 }
     
