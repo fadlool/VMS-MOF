@@ -218,6 +218,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     
     func login(){
+        
+        
         if (self.usernameTxtField.isFirstResponder()) {
             self.usernameTxtField.resignFirstResponder()
         }

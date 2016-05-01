@@ -79,7 +79,7 @@
 "vation_request"="طلب أجازه";
 "vaction_extend"="طلب تمديد أجازة";
 "vaction_cancel"="طلب إلغاء أجازة";
-"vaction_print"="طباعة طلب الاجازه";
+"vaction_print"="أجازاتي";
 "vacetion_service"="الخدمة الذاتية للاجازات";
 "bank_account"="رقم الحساب";
 "select_date"="إختر التاريخ";
@@ -109,4 +109,11 @@
 "confirm_msg" = "رسالة تأكيد";
 "not_activated" = "لم تفعل بعد.";
 "internet_error" = "لا يوجد شبكة";
+"verification_code_message" = "ادخل رمز التحقق المرسل إلي جوالك.";
+"verification_code" = "رمز التحقق";
+"verify" = "تأكيد";
+"code_invalid" = "الرمز غير مطابق";
+
+"search" = "بحث";
+"done" = "تم";
 

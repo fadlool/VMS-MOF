@@ -37,6 +37,7 @@
 		127C79D91C12269400757D12 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 127C79D01C12269400757D12 /* AFURLSessionManager.m */; };
 		127C79DB1C1226BB00757D12 /* Logger in Resources */ = {isa = PBXBuildFile; fileRef = 127C79DA1C1226BB00757D12 /* Logger */; };
 		127C79DD1C1226C400757D12 /* UIKit+AFNetworking in Resources */ = {isa = PBXBuildFile; fileRef = 127C79DC1C1226C400757D12 /* UIKit+AFNetworking */; };
+		129139551CD63C960070921C /* MyVacationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129139541CD63C960070921C /* MyVacationsVC.swift */; };
 		129833331C18A32D0069A3F5 /* NotificationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */; };
 		129833351C1949CA0069A3F5 /* SelfVacationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833341C1949CA0069A3F5 /* SelfVacationVC.swift */; };
 		129833371C194D050069A3F5 /* VacationReqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129833361C194D050069A3F5 /* VacationReqVC.swift */; };
@@ -139,6 +140,7 @@
 		127C79D01C12269400757D12 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFURLSessionManager.m; path = AFNetworking/AFURLSessionManager.m; sourceTree = "<group>"; };
 		127C79DA1C1226BB00757D12 /* Logger */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Logger; path = AFNetworking/Logger; sourceTree = "<group>"; };
 		127C79DC1C1226C400757D12 /* UIKit+AFNetworking */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "UIKit+AFNetworking"; path = "AFNetworking/UIKit+AFNetworking"; sourceTree = "<group>"; };
+		129139541CD63C960070921C /* MyVacationsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVacationsVC.swift; sourceTree = "<group>"; };
 		129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDetailsViewController.swift; sourceTree = "<group>"; };
 		129833341C1949CA0069A3F5 /* SelfVacationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfVacationVC.swift; sourceTree = "<group>"; };
 		129833361C194D050069A3F5 /* VacationReqVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VacationReqVC.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				129833321C18A32D0069A3F5 /* NotificationDetailsViewController.swift */,
 				129833341C1949CA0069A3F5 /* SelfVacationVC.swift */,
 				129833361C194D050069A3F5 /* VacationReqVC.swift */,
+				129139541CD63C960070921C /* MyVacationsVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -496,7 +499,7 @@
 				TargetAttributes = {
 					12E276621C05B6D700DA23E9 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 6XT553XYNJ;
+						DevelopmentTeam = Y5RQNTENUT;
 					};
 					12E276791C05B6D700DA23E9 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -615,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				126E9A0C1C15F1B900293B77 /* LoginInfo.m in Sources */,
+				129139551CD63C960070921C /* MyVacationsVC.swift in Sources */,
 				127BCB681C161BE200D63B29 /* NotificationCell.swift in Sources */,
 				12E276691C05B6D700DA23E9 /* LoginViewController.swift in Sources */,
 				12E2766F1C05B6D700DA23E9 /* VMS.xcdatamodeld in Sources */,
@@ -804,7 +808,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/DMS/VMS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = MOF.VMS;
+				PRODUCT_BUNDLE_IDENTIFIER = VMS;
 				PRODUCT_NAME = MOF;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DMS/VMS-Bridging-Header.h";
@@ -824,7 +828,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/DMS/VMS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = MOF.VMS;
+				PRODUCT_BUNDLE_IDENTIFIER = VMS;
 				PRODUCT_NAME = MOF;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "DMS/VMS-Bridging-Header.h";

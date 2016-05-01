@@ -161,7 +161,7 @@ class VacationReqVC:UITableViewController,UITextFieldDelegate,UIAlertViewDelegat
         let backButton:UIBarButtonItem  = UIBarButtonItem(title: "back".localized, style: UIBarButtonItemStyle.Done, target: self, action: "backTapped")
         self.navigationItem.leftBarButtonItem = backButton;
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Done, target: self, action: "actionTapped")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "done".localized, style: UIBarButtonItemStyle.Done, target: self, action: "actionTapped")
         
         self.vacationTypePicker.text = "select_vac_type".localized
         let showPickerDateGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self,action:"showVacTypePicker:")

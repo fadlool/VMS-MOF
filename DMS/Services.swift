@@ -185,6 +185,38 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     }
     
     
+    func showVerificationCodeDialog(loginInfo:LoginInfo){
+        let alert:UIAlertView = UIAlertView()
+        alert.title = "verification_code".localized
+        alert.message = "verification_code_message".localized
+        alert.addButtonWithTitle("verify".localized)
+        alert.addButtonWithTitle("cancel_dialog".localized)
+        
+        alert.alertViewStyle = .PlainTextInput;
+        
+        CustomAlertInputDelegate.showAlertView(alert) { (alert, btnIndex) -> Void in
+            if(alert.buttonTitleAtIndex(btnIndex) == "verify".localized){
+                if(alert.textFieldAtIndex(0)?.text == loginInfo.V_VERIFICATION_CODE){
+                    self.getUserInfo(loginInfo.PUSERNAME)
+                }else{
+                    let alertView:UIAlertView  = UIAlertView(title: nil, message: "code_invalid".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
+                    alertView.show()
+                    
+                    CustomAlertInputDelegate.showAlertView(alertView) { (alert, btnIndex) -> Void in
+                        if(alert.buttonTitleAtIndex(btnIndex) == "ok_dialog".localized){
+                            
+                            self.showVerificationCodeDialog(loginInfo)
+                            
+                        }
+                        
+                    }
+
+                }
+            }
+            
+        }
+    }
+    
     func connectionDidFinishLoading(connection: NSURLConnection!) {
         
         let xmlParser = NSXMLParser(data: mutableData)
@@ -225,11 +257,14 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 loginInfo.VFULLNAME = decrypt(loginJsonResDict.valueForKey("V_FULL_NAME") as! String)
                 loginInfo.VORGNAME = decrypt(loginJsonResDict.valueForKey("V_ORG_NAME") as! String)
                 loginInfo.VASSIGNSTATUS = decrypt(loginJsonResDict.valueForKey("V_ASSIGN_STATUS") as! String)
-                
+                loginInfo.V_VERIFICATION_CODE = decrypt(loginJsonResDict.valueForKey("V_VERIFICATION_CODE") as! String)
                 let sessionManager:SessionManager  = SessionManager.sharedSessionManager()
                 sessionManager.loginInfo = loginInfo
                 returnResultString = ""
+            
                 self.getUserInfo(loginInfo.PUSERNAME)
+//            self.showVerificationCodeDialog(loginInfo)
+
                 
             }else{
                 let alertView:UIAlertView  = UIAlertView(title: nil, message: "login_invalid".localized, delegate: nil, cancelButtonTitle: "ok_dialog".localized )
@@ -312,7 +347,10 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("ABSENCE_DAYS") as? NSNull) == nil){
-                    notification.ABSENCEDAYS = Double(decrypt(notificationDict.valueForKey("ABSENCE_DAYS") as! String))!
+                    let absDays:String? = decrypt((notificationDict.valueForKey("ABSENCE_DAYS") as? String)!)
+                    if(absDays != nil && absDays != ""){
+                        notification.ABSENCEDAYS = Double(absDays!)!
+                    }
                 }
                 
                 if((notificationDict.valueForKey("BEGIN_DATE_HIJ") as? NSNull) == nil){
@@ -366,7 +404,11 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 }
                 
                 if((notificationDict.valueForKey("NOT_ID") as? NSNull) == nil){
-                    notification.NOTID = Double(decrypt(notificationDict.valueForKey("NOT_ID") as! String))!
+                    let NOTID:String? = decrypt((notificationDict.valueForKey("NOT_ID") as? String)!)
+                    if(NOTID != nil && NOTID != ""){
+                        notification.NOTID = Double(NOTID!)!
+                    }
+                    
                 }
                 
                 notificationsViewController.notificationsList.addObject(notification)
@@ -464,7 +506,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
                 let filterVC:FilterTableViewController = self.viewController as! FilterTableViewController
                 for (var i = 0; i < reqJsonResArr.count; i++) {
                       jsonObject = reqJsonResArr.objectAtIndex(i) as! NSDictionary
-                    dropDownItem = DropDownItem(idx: String(jsonObject.valueForKey("PERSON_ID")!), title: String(jsonObject.objectForKey("PERSON_NAME")!))
+                    dropDownItem = DropDownItem(idx: decrypt(String(jsonObject.valueForKey("PERSON_ID")!)), title: decrypt(String(jsonObject.objectForKey("PERSON_NAME")!)))
                         filterVC.allTableData.addObject(dropDownItem)
                 }
                 
@@ -561,7 +603,7 @@ class Services : NSObject, NSURLConnectionDelegate, NSXMLParserDelegate{
     func processRequest( soapMessage:NSString,  service:String){
     
         self.methodName = service
-        let urlString = "http://87.101.205.237:1257/service.asmx"
+        let urlString = "http://87.101.205.249:1257/service.asmx"
         
         let url = NSURL(string: urlString)
         

@@ -29,5 +29,7 @@
 
 @property (nonatomic, strong) NSString*  V_WS_USER_NAME;
 @property (nonatomic, strong) NSString*  V_WS_PASSWORD;
+@property (nonatomic, strong) NSString*  V_VERIFICATION_CODE;
+
 
 @end
